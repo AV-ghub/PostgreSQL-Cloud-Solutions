@@ -131,6 +131,7 @@
 Действительно так.
 
 Делаем
+
     otus@otus-db-pg-vm-1:~$ sudo nano /etc/postgresql/15/main/pg_ident.conf
     # MAPNAME       SYSTEM-USERNAME         PG-USERNAME
     otus             otus               postgres
