@@ -86,14 +86,6 @@
     drwxr-xr-x 3 root root  4096 May 12 16:44 ./
     drwxr-xr-x 3 root root  4096 May 12 16:26 ../
     drwx------ 2 root root 16384 May 12 16:44 lost+found/
-    root@otus-db-pg-vm-1:/mnt/data# mkdir tmp
-    root@otus-db-pg-vm-1:/mnt/data# ll
-    total 28
-    drwxr-xr-x 4 root root  4096 May 12 16:53 ./
-    drwxr-xr-x 3 root root  4096 May 12 16:26 ../
-    drwx------ 2 root root 16384 May 12 16:44 lost+found/
-    drwxr-xr-x 2 root root  4096 May 12 16:53 tmp/
-    root@otus-db-pg-vm-1:/mnt/data#
 
 Ручной проброс состоялся. Идем дальше.
 
@@ -108,7 +100,6 @@
     drwxr-xr-x 4 root root  4096 May 12 17:08 ./
     drwxr-xr-x 3 root root  4096 May 12 16:26 ../
     drwx------ 2 root root 16384 May 12 17:04 lost+found/
-    drwxr-xr-x 2 root root  4096 May 12 17:08 tmp/
 
 Все на месте.
 
