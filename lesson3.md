@@ -105,13 +105,6 @@
 
 ## Postgres
 
-Чистим докера
-
-    sudo ss -lptn 'sport = :5432'
-    kill <pid>
-  
-и т.д.
-
 Ставим
 
     sudo apt install -y postgresql-15
