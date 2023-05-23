@@ -14,12 +14,12 @@
 Зона доступности: ru-central1-b
 Сервисный аккаунт: otus
 
-Postgres
--------------------------
+### Postgres
+```
+sudo apt install -y postgresql-15
+```
 
-    sudo apt install -y postgresql-15
-
-## pg_probackup
+### pg_probackup
 
 Ставим
 
@@ -64,21 +64,18 @@ export BACKUP_PATH
 postgres@otus-db-pg-vm-1:~$ echo $BACKUP_PATH
 /mnt/data/backups/
 ```
-Создадим роль в PostgreSQL для выполнения бекапов и дадим ему соответствующие права
+Создадим роль ***backup*** в PostgreSQL для выполнения бекапов и дадим ему соответствующие права
 
 https://habr.com/ru/companies/barsgroup/articles/515592/
-Для создания резервных копий необходимо подключение к СУБД, поэтому создаём в кластере PostgreSQL базу, 
-к которой будет происходить подключение для управления процессом резервного копирования 
-(с точки зрения безопасности это лучше, чем подключаться к продуктовой БД), 
-а также изменяем параметры базы данных:
+> Для создания резервных копий необходимо подключение к СУБД, поэтому создаём в кластере PostgreSQL базу, 
+> к которой будет происходить подключение для управления процессом резервного копирования 
+> (с точки зрения безопасности это лучше, чем подключаться к продуктовой БД), 
+> а также изменяем параметры базы данных:
+
 ```
 postgres@otus-db-pg-vm-1:~$ psql -p 5433
-psql (15.3 (Ubuntu 15.3-1.pgdg22.04+1))
-Type "help" for help.
-
 postgres=# create database adm;
 CREATE DATABASE
-
 BEGIN;
 CREATE ROLE backup WITH LOGIN;
 GRANT USAGE ON SCHEMA pg_catalog TO backup;
@@ -97,11 +94,13 @@ GRANT EXECUTE ON FUNCTION pg_catalog.pg_control_checkpoint() TO backup;
 COMMIT;
 ALTER ROLE backup WITH REPLICATION;
 ```
+
 Инициализируем наш бакап (**$BACKUP_PATH**)
 ```
 postgres@otus-db-pg-vm-1:~$ pg_probackup-15 init
 INFO: Backup catalog '/mnt/data/backups' successfully initialized
 ```
+
 Итог
 ```
 postgres@otus-db-pg-vm-1:~$ cd $BACKUP_PATH
@@ -109,6 +108,7 @@ postgres@otus-db-pg-vm-1:/mnt/data/backups$ ls -la
 drwx------ 2 postgres postgres 4096 May 19 07:38 backups
 drwx------ 2 postgres postgres 4096 May 19 07:38 wal
 ```
+
 Инициализируем инстанс **main**
 ```
 postgres@otus-db-pg-vm-1:~$ psql -p 5433 -c 'show data_directory;'
@@ -119,12 +119,14 @@ postgres@otus-db-pg-vm-1:~$ psql -p 5433 -c 'show data_directory;'
 postgres@otus-db-pg-vm-1:~$ pg_probackup-15 add-instance --instance 'main' -D /mnt/data/15/main
 INFO: Instance 'main' successfully initialized
 ```
+
 Создадим новую базу данных
 ```
 postgres@otus-db-pg-vm-1:~$ psql -p 5433 -c "CREATE DATABASE otus;"
 CREATE DATABASE
 ```
-Таблицу в этой базе данных и заполним ее тестовыми данными
+
+Создадим таблицу в этой базе данных и заполним ее тестовыми данными
 ```
 postgres@otus-db-pg-vm-1:~$ psql -p 5433 otus -c "CREATE TABLE test(i int);"
 psql -p 5433 otus -c "INSERT INTO test VALUES (10), (20), (30);"
@@ -138,7 +140,8 @@ INSERT 0 3
  30
 (3 rows)
 ```
-Подготовим кластер к резервному копированию
+
+### Подготовим кластер к резервному копированию
 
 Включим ***checksums***
 ```
@@ -164,13 +167,15 @@ Ver Cluster Port Status Owner    Data directory              Log file
 14  main    5432 online postgres /var/lib/postgresql/14/main /var/log/postgresql/postgresql-14-main.log
 15  main    5433 online postgres /mnt/data/15/main           /var/log/postgresql/postgresql-15-main.log
 ```
+
 Пытаемся бакапиться 
 ```
 postgres@otus-db-pg-vm-1:~$ pg_probackup-15 backup --instance 'main' -b FULL --stream --temp-slot
 INFO: Backup start, pg_probackup version: 2.5.12, instance: main, backup ID: RUWCL2, backup mode: FULL, wal mode: STREAM, remote: false, compress-algorithm: none, compress-level: 1
 ERROR: pg_probackup-15 was built with PostgreSQL 15, but connection is made with 14
 WARNING: Backup RUWCL2 is running, setting its status to ERROR
-
+```
+```
 postgres@otus-db-pg-vm-1:~$ pg_probackup-15 show
 BACKUP INSTANCE 'main'
 =====================================================================================================================
@@ -204,6 +209,7 @@ INFO: Backup RUWD0G data files are valid
 INFO: Backup RUWD0G resident size: 826MB
 INFO: Backup RUWD0G completed
 ```
+
 Обращаем внимание на ругательство и принимаем к сведению.
 
 В остальном
@@ -217,7 +223,7 @@ BACKUP INSTANCE 'main'
  main      ----     RUWCL2  ----                    FULL  STREAM    0/0    1s      0     0    1.00  0/0         0/0         ERROR
 ```
 
-победа
+Победа
 
 Внесем дополнительные данные
 ```
@@ -234,6 +240,7 @@ WARNING: Backup RUWE7V is running, setting its status to ERROR
 ```
 psql -c "ALTER USER backup PASSWORD 'otus123';" -p 5433
 ```
+
 https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge
 
 ```
@@ -258,6 +265,8 @@ INFO: Backup start, pg_probackup version: 2.5.12, instance: main, backup ID: RUW
 Password for user backup:
 ERROR: query failed: ERROR:  permission denied for function pg_backup_start
 ```
+
+Прописываем
 ```
 echo "localhost:5433:replication:backup:otus123">>~/.pgpass
 WARNING: password file "/var/lib/postgresql/.pgpass" has group or world access; permissions should be u=rw (0600) or less
@@ -316,7 +325,7 @@ BACKUP INSTANCE 'main'
 ----------------------------
 ```
 pg_createcluster 15 main2 -D /mnt/data/15/main2
-...
+
 Ver Cluster Port Status Owner    Data directory     Log file
 15  main2   5434 down   postgres /mnt/data/15/main2 /var/log/postgresql/postgresql-15-main2.log
 
@@ -327,8 +336,11 @@ psql (15.3 (Ubuntu 15.3-1.pgdg22.04+1))
 
 ```
 pg_ctlcluster 15 main2 stop
+```
+```
 rm -rf /mnt/data/15/main2
-
+```
+```
 pg_probackup-15 restore --instance 'main' -i 'RUWPE8' -D /mnt/data/15/main2
 INFO: Restore of backup RUWPE8 completed.
 
