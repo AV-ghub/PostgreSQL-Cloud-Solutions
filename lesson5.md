@@ -449,7 +449,7 @@ BACKUP INSTANCE 'main2'
 
 Пускаем нагрузку
 ```
-pgbench -p 5434 -c 10 -j 2 -t 100 mtest
+pgbench -p 5434 -c 10 -j 2 -t 10000 mtest
 ```
 
 И делаем то же самое
