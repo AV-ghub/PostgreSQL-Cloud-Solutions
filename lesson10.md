@@ -29,11 +29,12 @@ sudo apt install greenplum-db-6
 ```
 
 Exact path of the Greenplum software directory:
+otus@gp:/opt/greenplum-db-6.24.3$ 
 ```
-otus@gp:/opt/greenplum-db-6.24.3$ source greenplum_path.sh
+source greenplum_path.sh
 ```
 ```
-otus@gp:/opt/greenplum-db-6.24.3$ which gpssh
+which gpssh
 ```
 ```
 /opt/greenplum-db-6.24.3/bin/gpssh
