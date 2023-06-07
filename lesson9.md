@@ -7,10 +7,15 @@
 Ставим curl.
 
 Поверяем требования
+
+> https://kubernetes.io/ru/docs/tasks/tools/install-minikube/
+
 ```
 grep -E --color 'vmx|svm' /proc/cpuinfo
 ```
 Требования не выполняются. Будем ставить minikube докеровским контейнером.
+
+> https://docs.docker.com/engine/install/ubuntu/
 
 ### Ставим docker
 
@@ -71,6 +76,7 @@ docker images
 ```
 docker ps
 ```
+
 
 
 
