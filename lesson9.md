@@ -3,8 +3,7 @@
 
 ## Развертывание
 
-Делаем виртуалку с ubuntu.
-Ставим curl.
+Делаем виртуалку с ubuntu в YCloud.
 
 Поверяем требования
 
@@ -76,9 +75,10 @@ docker images
 ```
 docker ps
 ```
+### Kubernetes
+#### Minikube
 
-
-
+> https://kubernetes.io/ru/docs/tasks/tools/install-minikube/
 
 
 
