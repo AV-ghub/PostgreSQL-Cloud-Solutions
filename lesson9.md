@@ -76,8 +76,26 @@ docker images
 docker ps
 ```
 ### Kubernetes
-#### Minikube
+#### Установка kubectl в Linux
+> https://kubernetes.io/ru/docs/tasks/tools/install-kubectl/#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-kubectl-%D0%B2-linux
 
+##### 1. Последняя версия двичного kubectl
+
+curl -LO https://dl.k8s.io/release/`curl -LS https://dl.k8s.io/release/stable.txt`/bin/linux/amd64/kubectl
+
+##### 2. Права
+
+chmod +x ./kubectl
+
+##### 3. Перемещаем в директорию из переменной окружения PATH
+
+sudo mv ./kubectl /usr/local/bin/kubectl
+
+##### 4. Проверяем версию
+
+kubectl version --client
+
+#### Minikube
 > https://kubernetes.io/ru/docs/tasks/tools/install-minikube/
 
 
