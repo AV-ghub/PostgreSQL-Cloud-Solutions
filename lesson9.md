@@ -80,35 +80,54 @@ docker ps
 > https://kubernetes.io/ru/docs/tasks/tools/install-kubectl/#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-kubectl-%D0%B2-linux
 
 ##### 1. Последняя версия двичного kubectl
-
+```
 curl -LO https://dl.k8s.io/release/`curl -LS https://dl.k8s.io/release/stable.txt`/bin/linux/amd64/kubectl
-
+```
 ##### 2. Права
-
+```
 chmod +x ./kubectl
-
+```
 ##### 3. Перемещаем в директорию из переменной окружения PATH
-
+```
 sudo mv ./kubectl /usr/local/bin/kubectl
-
+```
 ##### 4. Проверяем версию
-
+```
 kubectl version --client
-
+```
 #### Minikube
 > https://kubernetes.io/ru/docs/tasks/tools/install-minikube/
 
-
-
-
-
-
-
-
-
-
-
-
+##### 1. Установка Minikube с помощью прямой ссылки
+```
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+  && chmod +x minikube
+```  
+##### 2. Чтобы исполняемый файл Minikube был доступен из любой директории  
+```
+sudo mkdir -p /usr/local/bin/
+```
+```
+sudo install minikube /usr/local/bin/
+```
+##### 3. Проверка установки
+> https://kubernetes.io/ru/docs/setup/learning-environment/minikube/#%D1%83%D0%BA%D0%B0%D0%B7%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D0%B5%D1%80%D0%B0-%D0%B2%D0%B8%D1%80%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9-%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D1%8B
+```
+minikube start --vm-driver=docker
+```
+```
+minikube status
+```
+```
+docker ps
+```
+#### 4. Создаем свой namespace
+```
+kubectl create namespace test
+```
+```
+kubectl get pods -n test
+```
 
 
 
