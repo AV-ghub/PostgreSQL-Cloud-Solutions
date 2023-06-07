@@ -15,9 +15,9 @@ grep -E --color 'vmx|svm' /proc/cpuinfo
 ```
 Требования не выполняются. Будем ставить minikube докеровским контейнером.
 
-> https://docs.docker.com/engine/install/ubuntu/
-
 ### Ставим docker
+
+> https://docs.docker.com/engine/install/ubuntu/
 
 #### Uninstall all conflicting packages
 ```
