@@ -138,7 +138,7 @@ Kubectl получает информацию о конфигурации miniku
 > https://kubernetes.io/docs/concepts/workloads/pods/
 ##### Создаем файлик манифеста postgres.yaml
 Создаем в любой директории, напр в домашней, откуда  откуда будем его непосредственно использовать при запуске.
-
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -155,47 +155,51 @@ spec:
     env:
     - name: POSTGRES_PASSWORD
       value: postgres
-
+```
 ##### Пускаем
-
+```
 kubectl apply -f postgres.yaml
-
+```
 Файлик postgres.yaml при этом закидывается в кубер в дефолтный namespace.
 
 ##### Проверяем
-
+```
 kubectl get pods
-
+```
 Контейнер postgres на месте.
 
 ##### Информация о kubectl и pod
-
+```
 kubectl get events
-
+```
+```
 kubectl describe pods maindb
-
+```
 Видим State, POSTGRES_PASSWORD и т.д.
 
 ##### Смотрим логи
-
+```
 kubectl logs maindb
-
+```
 ##### Заходим внутрь контейнера
-
+```
 kubectl exec -it maindb bash
-
+```
+```
 su postgres
 cd
 psql
-
+```
 Postgres развернут.
 
 #### Пытаемся прокинуть наружу порт
 > https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
 ##### Прокидывание
+```
 kubectl expose pod maindb --type=NodePort --port=5432
+```
 ##### Прописываем сервис в postgres.yaml для возможности работы контейнера наружу
-
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -229,80 +233,88 @@ spec:
     port: 5432
     targetPort: maindb-port
   nodePort: 30007
-
+```
 ##### Рестартуем pod и смотрим сервис
-
+```
 kubectl delete pods maindb
-
+```
+```
 kubectl apply -f postgres.yaml
-
+```
+```
 kubectl get service
-
+```
 #### Ставим postgres снаружи (для psql)
 Можно поставить просто клиентские тулзы
-
+```
 sudo apt-get -y install postgres
-
+```
 ##### Смотрим параметры сервиса (IP, port)
-
+```
 kubectl get service
-
+```
 ##### Пробуем зайти
-
+```
 psql -h <public IP> -p <get service port> -U postgres -W
 psql -h <get service IP> -p <get service port> -U postgres -W  
-
+```
 ##### Пробуем заставить прокинуть порт
-
+```
 minikube service maindb --url  
-
+```
+```
 psql -h <--url IP> -p <--url port> -U postgres -W   
-
+```
 Зашли.  
 
 ##### Пробуем еще вариант	
-
+```
 minikube start --extra-config=apiserver.service-node-port-range=1-65535
-
+```
 ##### Еще
-	
+```	
 minikube tunnel --cleanup
-
+```
 Нет, по <public IP> не получается. Делаем вывод о том, что minikube в docker имеет ограничение для проброса наружу.
 Во всяком случае в YCloud по <public IP> это сделать не удается.
 
 ### Helm
 #### Ставим
 > https://helm.sh/docs/intro/install/
-
+```
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-	
+```
+```
 chmod 700 get_helm.sh
-	
+```
+```
 ./get_helm.sh
-	
+```	
 ##### Инструкции
-	
+```	
 helm --help
-	
+```	
 ##### Создаем рабочий каталог
-	
+```	
 helm create maindb
-	
+```	
 ##### Подготовка
-	
+```	
 cd maindb
-	
+```
+```
 rm -rf /templates/*
-	
+```
+```
 cd templates
-	
+```	
 ##### Конфигурирование
 	
 Подставлять будем image:
-
+```
 nano pod.yaml
-	
+```
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -319,9 +331,11 @@ spec:
     env:
     - name: POSTGRES_PASSWORD
       value: postgres	
-
+```
+```
 nano service.yaml
-	
+```
+```
 apiVersion: v1
 kind: Service
 metadata:
@@ -336,34 +350,35 @@ spec:
     port: 5432
     targetPort: maindb-port
     nodePort: 30007	
-
+```
 ##### Уходим в корневую (maindb)	
-	
+```	
 cd ..
-	
+```	
 ##### И конфигурим переменную
-	
+```	
 nano values.yaml
-	
+```	
 ##### Добавляем
-	
+```	
 imagePostgresql: postgres:14
-	
+```	
 ##### Удаляем текущий pod и service
-	
+```	
 kubectl delete pods maindb
-
+```
+```
 kubectl delete service maindb
-	
+```	
 ##### Проверка что получилось
-	
+```	
 helm upgrade --install --dry-run maindb ./
-	
+```	
 ##### Деплоим
-	
+```	
 helm upgrade --install maindb ./
-	
+```	
 ##### Проверяем
-	
+```	
 kubectl get pods
-	
+```	
