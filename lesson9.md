@@ -52,7 +52,18 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 sudo docker run hello-world
 
+##### 4. Разбираемся с правами
 
+sudo groupadd docker
+
+sudo usermod -aG docker $USER
+
+newgrp docker
+
+##### 5. Проверяем 
+
+docker images
+docker ps
 
 
 
