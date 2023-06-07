@@ -253,63 +253,117 @@ psql -h <public IP> -p <get service port> -U postgres -W
 psql -h <get service IP> -p <get service port> -U postgres -W  
 
 ##### Пробуем заставить прокинуть порт
-  
+
 minikube service maindb --url  
-  
+
 psql -h <--url IP> -p <--url port> -U postgres -W   
-  
+
 Зашли.  
 
-Но по <public IP> не получается. Делаем вывод о том, что minikube в docker имеет ограничение для проброса наружу.
+##### Пробуем еще вариант	
+
+minikube start --extra-config=apiserver.service-node-port-range=1-65535
+
+##### Еще
+	
+minikube tunnel --cleanup
+
+Нет, по <public IP> не получается. Делаем вывод о том, что minikube в docker имеет ограничение для проброса наружу.
 Во всяком случае в YCloud по <public IP> это сделать не удается.
 
+### Helm
+#### Ставим
+> https://helm.sh/docs/intro/install/
 
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+	
+chmod 700 get_helm.sh
+	
+./get_helm.sh
+	
+##### Инструкции
+	
+helm --help
+	
+##### Создаем рабочий каталог
+	
+helm create maindb
+	
+##### Подготовка
+	
+cd maindb
+	
+rm -rf /templates/*
+	
+cd templates
+	
+##### Конфигурирование
+	
+Подставлять будем image:
 
+nano pod.yaml
+	
+apiVersion: v1
+kind: Pod
+metadata:
+  name: maindb
+  labels:
+    app.kubernetes.io/name: maindb
+spec:
+  containers:
+  - name: maindb
+    image: {{ .Values.imagePostgresql }}
+    ports:
+    - containerPort: 5432
+	  name: maindb-port
+    env:
+    - name: POSTGRES_PASSWORD
+      value: postgres	
 
+nano service.yaml
+	
+apiVersion: v1
+kind: Service
+metadata:
+  name: maindb
+spec:
+  selector:
+    app.kubernetes.io/name: maindb
+  type: NodePort
+  ports:
+  - name: name-of-service-port
+    protocol: TCP
+    port: 5432
+    targetPort: maindb-port
+    nodePort: 30007	
 
+##### Уходим в корневую (maindb)	
+	
+cd ..
+	
+##### И конфигурим переменную
+	
+nano values.yaml
+	
+##### Добавляем
+	
+imagePostgresql: postgres:14
+	
+##### Удаляем текущий pod и service
+	
+kubectl delete pods maindb
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+kubectl delete service maindb
+	
+##### Проверка что получилось
+	
+helm upgrade --install --dry-run maindb ./
+	
+##### Деплоим
+	
+helm upgrade --install maindb ./
+	
+##### Проверяем
+	
+kubectl get pods
+	
