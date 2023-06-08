@@ -85,23 +85,27 @@ Edit gpinitsystem_singlenode Configuration File
 /home/otus/gpdata/primary
 /home/otus/gpdata/secondary
 ```
-
+```
 gpssh-exkeys -f hostfile_gpinitsystem
-
+```
+```
 gpinitsystem -c gpinitsystem_config
-
+```
+```
 gpstate -e
-MASTER_DATA_DIRECTORY not set
+```
+> MASTER_DATA_DIRECTORY not set
 
 Глюк установщика
-
+```
 export MASTER_DATA_DIRECTORY="/home/otus/gpdata/master/gpseg-1"
-
+```
+```
 gpstate -e
-
-
+```
+```
 psql postgres
-
+```
 
 
 
