@@ -30,7 +30,7 @@ sudo apt install greenplum-db-6
 
 Exact path of the Greenplum software directory:
 ```
-cd /opt/greenplum-db-6.24.3$ 
+cd /opt/greenplum-db-6.24.3
 ```
 ```
 source greenplum_path.sh
