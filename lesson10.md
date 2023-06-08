@@ -41,16 +41,36 @@ cd /opt/greenplum-db-6.24.3
 source greenplum_path.sh
 ```
 
-
 Copy a Greenplum cluster configuration file template into local directory for editing
 ```
 cd
 ```
 ```
 cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_singlenode .
+cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config .
+cp $GPHOME/docs/cli_help/gpconfigs/hostlist_singlenode .
 ```
-
-
+Имя машины
+```
+cat /etc/hostname
+or
+hostname
+```
+> gp
+  
+Edit gpinitsystem Configuration File
+```
+MACHINE_LIST_FILE=./hostlist_singlenode
+declare -a DATA_DIRECTORY=(/home/otus/gpadmin/primary /home/otus/gpadmin/primary)
+MASTER_HOSTNAME=gp
+MASTER_DIRECTORY=/home/otus/gpadmin/master
+```
+Edit hostlist_singlenode Configuration File
+```
+gp
+```
+Edit gpinitsystem_singlenode Configuration File
+> Аналогично gpinitsystem
 
 
 
