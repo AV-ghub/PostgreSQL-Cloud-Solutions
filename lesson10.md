@@ -38,7 +38,31 @@ source greenplum_path.sh
 ```
 which gpssh
 ```
-```
-/opt/greenplum-db-6.24.3/bin/gpssh
-```
+> /opt/greenplum-db-6.24.3/bin/gpssh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
