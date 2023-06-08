@@ -28,17 +28,28 @@ Install the latest Greenplum Database release:
 sudo apt install greenplum-db-6
 ```
 
+```
+which gpssh
+```
 Exact path of the Greenplum software directory:
+> /opt/greenplum-db-6.24.3/bin/gpssh
+
 ```
 cd /opt/greenplum-db-6.24.3
 ```
 ```
 source greenplum_path.sh
 ```
+
+
+Copy a Greenplum cluster configuration file template into local directory for editing
 ```
-which gpssh
+cd
 ```
-> /opt/greenplum-db-6.24.3/bin/gpssh
+```
+cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_singlenode .
+```
+
 
 
 
