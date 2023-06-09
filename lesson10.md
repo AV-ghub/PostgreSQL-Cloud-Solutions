@@ -30,7 +30,9 @@ Install the latest Greenplum Database release:
 ```
 sudo apt install greenplum-db-6
 ```
-
+```
+export GPHOME="/opt/greenplum-db-6.24.3"
+```
 ```
 which gpssh
 ```
