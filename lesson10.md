@@ -44,18 +44,21 @@ cd /opt/greenplum-db-6.24.3
 source greenplum_path.sh
 ```
 
+Делаем все каталоги
+```
+/home/otus/gp
+/home/otus/gp/gpdata/master
+/home/otus/gp/gpdata/primary
+/home/otus/gp/gpdata/secondary
+```
+
 Copy a Greenplum cluster configuration file template into local directory for editing
 ```
-cd
+cd /home/otus/gp
 ```
 ```
---- option 1
 cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config .
 cp $GPHOME/docs/cli_help/gpconfigs/hostfile_gpinitsystem .
---- option 2
-cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_singlenode .
-cp $GPHOME/docs/cli_help/gpconfigs/hostlist_singlenode .
--- etc
 ```
 Имя машины
 ```
@@ -67,12 +70,12 @@ hostname
   
 Edit gpinitsystem Configuration File
 ```
-MACHINE_LIST_FILE=./hostlist_singlenode
-declare -a DATA_DIRECTORY=(/home/otus/gpdata/primary /home/otus/gpdata/primary)
-declare -a MIRROR_DATA_DIRECTORY=(/home/otus/gpdata/secondary /home/otus/gpdata/secondary)
+MACHINE_LIST_FILE=/home/otus/gp
+declare -a DATA_DIRECTORY=(/home/otus/gp/gpdata/primary /home/otus/gpdata/primary)
+declare -a MIRROR_DATA_DIRECTORY=(/home/otus/gp/gpdata/secondary /home/otus/gpdata/secondary)
 MASTER_HOSTNAME=gp
-MASTER_DIRECTORY=/home/otus/gpdata/master
-MACHINE_LIST_FILE=/home/otus/hostfile_gpinitsystem
+MASTER_DIRECTORY=/home/otus/gp/gpdata/master
+MACHINE_LIST_FILE=/home/otus/gp/hostfile_gpinitsystem
 DATABASE_NAME=test
 ```
 Edit hostlist_singlenode Configuration File
@@ -82,12 +85,7 @@ gp
 Edit gpinitsystem_singlenode Configuration File
 > Аналогично gpinitsystem
 
-Делаем все каталоги
-```
-/home/otus/gpdata/master
-/home/otus/gpdata/primary
-/home/otus/gpdata/secondary
-```
+
 ```
 gpssh-exkeys -f hostfile_gpinitsystem
 ```
@@ -101,7 +99,7 @@ gpstate -e
 
 Глюк установщика
 ```
-export MASTER_DATA_DIRECTORY="/home/otus/gpdata/master/gpseg-1"
+export MASTER_DATA_DIRECTORY="/home/otus/gp/gpdata/master/gpseg-1"
 ```
 ```
 gpstate -e
