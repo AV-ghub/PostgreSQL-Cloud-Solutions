@@ -74,8 +74,8 @@ hostname
 Edit gpinitsystem Configuration File
 ```
 MACHINE_LIST_FILE=/home/otus/gp
-declare -a DATA_DIRECTORY=(/home/otus/gp/gpdata/primary /home/otus/gpdata/primary)
-declare -a MIRROR_DATA_DIRECTORY=(/home/otus/gp/gpdata/secondary /home/otus/gpdata/secondary)
+declare -a DATA_DIRECTORY=(/home/otus/gp/gpdata/primary /home/otus/gp/gpdata/primary)
+declare -a MIRROR_DATA_DIRECTORY=(/home/otus/gp/gpdata/secondary /home/otus/gp/gpdata/secondary)
 MASTER_HOSTNAME=gp
 MASTER_DIRECTORY=/home/otus/gp/gpdata/master
 MACHINE_LIST_FILE=/home/otus/gp/hostfile_gpinitsystem
