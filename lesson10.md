@@ -85,16 +85,19 @@ Edit hostlist_singlenode Configuration File
 ```
 gp
 ```
-Edit gpinitsystem_singlenode Configuration File
-> Аналогично gpinitsystem
+Прописываем в gpinitsystem имя базы по логину (напр otus).
+Чтобы не указывать имя базы в psql.
 
-
+Далее инициализируем конфигурацию.
+Проверяем еще раз параметры конфигурации.
+Второй раз инициализацию будет сделать скорее всего нельзя (надо копать).
 ```
 gpssh-exkeys -f hostfile_gpinitsystem
 ```
 ```
 gpinitsystem -c gpinitsystem_config
 ```
+Проверяем статус сервиса
 ```
 gpstate -e
 ```
@@ -121,8 +124,14 @@ gpstate -e
 ```
 psql
 ```
-
-
+Перманентим скрипт в $HOME/.bashrc в конец файлика
+```
+export MASTER_DATA_DIRECTORY="/home/otus/gp/gpdata/master/gpseg-1"
+export GPHOME="/opt/greenplum-db-6.24.3"
+cd $GPHOME
+source greenplum_path.sh
+cd $HOME
+```
 
 
 
