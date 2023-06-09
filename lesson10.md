@@ -114,9 +114,10 @@ psql postgres
 ```
 export MASTER_DATA_DIRECTORY="/home/otus/gp/gpdata/master/gpseg-1"
 export GPHOME="/opt/greenplum-db-6.24.3"
-cd /home/otus/gp
-gpssh-exkeys -f hostfile_gpinitsystem
-gpinitsystem -c gpinitsystem_config
+cd $GPHOME
+source greenplum_path.sh
+--gpssh-exkeys -f hostfile_gpinitsystem
+--gpinitsystem -c gpinitsystem_config
 gpstate -e
 psql postgres
 ```
