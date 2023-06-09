@@ -47,6 +47,7 @@ source greenplum_path.sh
 Делаем все каталоги
 ```
 /home/otus/gp
+/home/otus/gp/gpdata
 /home/otus/gp/gpdata/master
 /home/otus/gp/gpdata/primary
 /home/otus/gp/gpdata/secondary
