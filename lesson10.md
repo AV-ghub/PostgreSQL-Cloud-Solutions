@@ -126,6 +126,9 @@ psql
 ```
 Перманентим скрипт в $HOME/.bashrc в конец файлика
 ```
+nano $HOME/.bashrc
+```
+```
 export MASTER_DATA_DIRECTORY="/home/otus/gp/gpdata/master/gpseg-1"
 export GPHOME="/opt/greenplum-db-6.24.3"
 cd $GPHOME
