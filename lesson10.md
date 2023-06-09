@@ -40,7 +40,7 @@ Exact path of the Greenplum software directory:
 > /opt/greenplum-db-6.24.3/bin/gpssh
 
 ```
-cd /opt/greenplum-db-6.24.3
+cd $GPHOME
 ```
 ```
 source greenplum_path.sh
