@@ -133,12 +133,49 @@ export MASTER_DATA_DIRECTORY="/home/otus/gp/gpdata/master/gpseg-1"
 export GPHOME="/opt/greenplum-db-6.24.3"
 cd $GPHOME
 source greenplum_path.sh
+gpstart -d /home/otus/gp/gpdata/master/gpseg-1 -l /home/otus/gp/logs -q -a
 cd $HOME
 ```
 
+Запуск сервисом
+Вар1
+```
+[Service]
+Type=notify
+EnvironmentFile=/home/otus/env/gp
+ExecStart=/bin/bash -c "cd $GPHOME; source greenplum_path.sh; gpstart -d /home/otus/gp/gpdata/master/gpseg-1 -l /home/otus/gp/logs -q -a"
+ExecStop=/bin/bash -c "cd $GPHOME; gpstop -q -a"
+User=otus
 
+[Install]
+WantedBy=multi-user.target
+```
+вар2
+```
+[Service]
+Type=notify
+EnvironmentFile=/home/otus/env/gp
+ExecStart=/bin/bash -c "cd /opt/greenplum-db-6.24.3; source greenplum_path.sh; gpstart -d /home/otus/gp/gpdata/master/gpseg-1 -l /home/otus/gp/logs -q -a"
+ExecStop=/bin/bash -c "cd /opt/greenplum-db-6.24.3; gpstop -q -a"
+User=otus
 
+[Install]
+WantedBy=multi-user.target
+```
+Адм
+```
+sudo nano /etc/systemd/system/gp-otus1.service
 
+sudo systemctl disable gp-otus1.service
+sudo systemctl enable gp-otus1.service
+sudo systemctl daemon-reload
+sudo systemctl start gp-otus1.service
+sudo systemctl stop gp-otus1.service
+sudo systemctl restart gp-otus1.service
+
+sudo systemctl status gp-otus1.service
+journalctl -u gp-otus1
+```
 
 
 
