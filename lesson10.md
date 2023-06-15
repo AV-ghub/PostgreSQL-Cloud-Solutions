@@ -177,6 +177,54 @@ sudo systemctl status gp-otus1.service
 journalctl -u gp-otus1
 ```
 
+### Работа с Greenplum
+
+Версия
+gpssh --version
+gpssh version 6.24.3 build commit:25d3498a400ca5230e81abb94861f23389315213 Open Source
+
+Список баз
+psql -l
+
+Список команд
+psql
+\?
+
+Файлики
+cd $MASTER_DATA_DIRECTORY
+ls -la
+
+HBA
+cd $MASTER_DATA_DIRECTORY
+cat pg_hba.conf
+cat postgresql.conf
+gpconfig --help
+gpconfig -l | grep mem
+
+Check
+gpconfig -s work_mem
+Values on all segments are consistent
+GUC          : work_mem
+Master  value: 32MB
+Segment value: 32MB
+
+Set
+gpconfig -s work_mem -v 128MB
+gpstop --help
+gpstop -u
+
+Segment configuration
+psql postgres
+Describe
+\d gp_segment_configuration;
+select * from gp_segment_configuration;
+select * from pg_stat_activity;
+\d pg_class
+
+
+
+
+
 
 
 
