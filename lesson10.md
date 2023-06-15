@@ -235,6 +235,74 @@ select * from pg_stat_activity;
 \d pg_class
 ```
 
+### Postgres
+
+#### Генерация данных
+Гоняем pg_bench. Берем таблицу и сливаем ее в сторону через select into.
+Получаем ~650МБ, для тестов достаточно.
+
+#### Выгрузка наружу
+Выгружаем через COPY.
+
+time psql mtest -c "COPY test TO STDOUT WITH CSV DELIMITER ';' HEADER ENCODING 'UTF-8'" > test.csv
+
+Получили 23 сек.
+
+#### Тестируем загрузку
+
+CREATE TABLE test1 AS
+TABLE test
+WITH NO DATA;
+    
+COPY test1(aid, bid, abalance, filler)
+FROM '/mnt/unload/test.csv'
+DELIMITER ';'
+CSV HEADER;
+
+Получили 41 сек.
+
+### Загрузка данных в greenplum
+
+В предыдущем разделе данные сливали на прицепленный диск.
+Попробуем его отцепить от машины с postgres и прецепить к машине с greenplum.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
