@@ -267,6 +267,21 @@ CSV HEADER;
 В предыдущем разделе данные сливали на прицепленный диск.
 Попробуем его отцепить от машины с postgres и прецепить к машине с greenplum.
 
+psql
+otus=# create table test1(aid integer, bid integer, abalance integer, filler text) distributed randomly;
+CREATE TABLE
+\q
+
+otus@gp1:~$ gpfdist -d /mnt/data/unload/ -p 8081 > gpfdist.log 2>&1 &
+[1] 1536
+
+psql
+otus=# CREATE READABLE EXTERNAL TABLE test1_ext (like test1)
+otus-# LOCATION ('gpfdist://10.129.0.25:8081//test.csv')
+otus-# FORMAT 'CSV' (HEADER)
+otus-# LOG ERRORS SEGMENT REJECT LIMIT 50;
+NOTICE:  HEADER means that each one of the data files has a header row
+CREATE EXTERNAL TABLE
 
 
 
