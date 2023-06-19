@@ -267,6 +267,9 @@ CSV HEADER;
 
 В предыдущем разделе данные сливали на прицепленный диск.
 Попробуем его отцепить от машины с postgres и прецепить к машине с greenplum.
+
+> https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/lesson3.md
+
 ```
 psql
 otus=# create table test1(aid integer, bid integer, abalance integer, filler text) distributed randomly;
