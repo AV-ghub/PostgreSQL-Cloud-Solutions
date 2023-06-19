@@ -119,6 +119,7 @@ export MASTER_DATA_DIRECTORY="/home/otus/gp/gpdata/master/gpseg-1"
 export GPHOME="/opt/greenplum-db-6.24.3"
 cd $GPHOME
 source greenplum_path.sh
+gpstart -d /home/otus/gp/gpdata/master/gpseg-1 -l /home/otus/gp/logs -q -a
 gpstate -e
 ```
 ```
