@@ -4,6 +4,16 @@
 ## Greenplum
 
 > https://greenplum.org/install-greenplum-oss-on-ubuntu/
+> https://www.youtube.com/watch?v=qpwA1z3s4uA
+> https://www.youtube.com/watch?v=aeLH-VnZh2U
+> https://stackoverflow.com/questions/41588332/greenplum-gpload-last-error-extra-data-after-last-expected-column
+> https://www.oreilly.com/library/view/data-warehousing-with/9781491983539/ch04.html
+> https://docs.vmware.com/en/VMware-Greenplum/6/greenplum-database/utility_guide-ref-gpload.html
+> https://docs.vmware.com/en/VMware-Greenplum/6/greenplum-database/utility_guide-ref-gpfdist.html
+> https://docs.vmware.com/en/VMware-Greenplum/6/greenplum-database/admin_guide-load-topics-transforming-xml-data.html
+> https://docs.vmware.com/en/VMware-Greenplum/6/greenplum-database/admin_guide-load-topics-transforming-xml-data.html#topic83
+> https://docs.vmware.com/en/VMware-Greenplum/6/greenplum-database/admin_guide-load-topics-g-loading-data-with-gpload.html
+> 
 
 ### Установка
 
@@ -331,9 +341,9 @@ gpload -f test.yaml
 ### Тестируем аналитический запрос
 
 Для эксперимента возьмем простейший, но выгнутый запрос с аналитикой.
-
+```
 select max(aid) from test1 where bid in (select bid from test1 where abalance < 0);
-
+```
 Результаты здесь интересные (стоит принять во внимание также недетерминированное состояние клауда).
 
 В postgres запрос на холодную уходит в 50 сек.
@@ -353,44 +363,3 @@ select max(aid) from test1 where bid in (select bid from test1 where abalance < 
 Если сделать их десяток с грамотным распределением и разнести на прицепленные диски, то возможно реально будет чему удивиться в сравнении.
 
 Но даже просто факт отсутствия прогрева со стабильным результатом уже на первом запросе - это уже существенный результат в пользу greenplum на больших данных.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
