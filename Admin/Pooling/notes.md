@@ -6,4 +6,4 @@
 3. connection involves a ***handshake*** that may take 25-35 ms average
 
 For every connection to the database, an **overhead memory between 5 to 10 MB** is used up to cater for a query request.
-The core advantage associated with Standalone connection pooling is: minimal overhead cost of about **2kb** for every connection.
+The core advantage associated with ***Standalone connection pooling*** is: minimal overhead cost of about **2kb** for every connection.
