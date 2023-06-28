@@ -24,3 +24,6 @@ Not only are these tools helpful in balancing the load of your databases, but th
 ***HAProxy*** is a load balancer that distributes traffic from one origin to one or more destinations and can define specific rules and/or protocols for this task. If any of the destinations stop responding, they are marked as offline, and the traffic is sent to the rest of the available destinations.
 
 ***Keepalived*** is a service that allows you to configure a virtual IP address within an active/passive group of servers. This virtual IP address is assigned to an active server. If this server fails, the IP address is automatically migrated to the “Secondary” passive server, allowing it to continue working with the same IP address in a transparent way for the systems.
+
+### How to Achieve PostgreSQL High Availability with pgBouncer
+> https://severalnines.com/blog/how-achieve-postgresql-high-availability-pgbouncer/
