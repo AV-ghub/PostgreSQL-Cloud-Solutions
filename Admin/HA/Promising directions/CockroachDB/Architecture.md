@@ -37,6 +37,35 @@ The decision about whether to distribute a query across multiple nodes is made b
 
 For example, when a query is distributed, the ***physical planning phase splits the scan operations from the logical plan into multiple physical TableReader operators***, one for each node containing a range read by the scan. The remaining ***logical operations*** (which may perform filters, joins, and aggregations) are then ***scheduled on the same nodes*** as the TableReaders. This results in computations being ***performed as close to the physical data as possible***.
 
+### Query execution
+Components of the physical plan are sent to one or more nodes for execution. ***On each node, CockroachDB spawns a logical processor to compute a part of the query***. Logical processors inside or across nodes communicate with each other over a logical flow of data. The ***combined results*** of the query are ***sent back to the first node*** where the query was received, to be sent further to the SQL client.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
