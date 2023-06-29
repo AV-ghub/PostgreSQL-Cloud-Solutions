@@ -53,8 +53,9 @@ CockroachDB performs schema changes, such as the addition of columns or secondar
 ## Transaction Layer
 > https://www.cockroachlabs.com/docs/v23.1/architecture/transaction-layer
 
-CockroachDB ***executes all transactions at*** the strongest ANSI transaction isolation level: ***SERIALIZABLE***. All other ANSI transaction isolation levels (e.g., SNAPSHOT, READ UNCOMMITTED, READ COMMITTED, and REPEATABLE READ) are automatically upgraded to SERIALIZABLE. Weaker isolation levels have historically been used to maximize transaction throughput. However, recent research
+CockroachDB ***executes all transactions at*** the strongest ANSI transaction isolation level: ***SERIALIZABLE***. All other ANSI transaction isolation levels (e.g., SNAPSHOT, READ UNCOMMITTED, READ COMMITTED, and REPEATABLE READ) are automatically upgraded to SERIALIZABLE. Weaker isolation levels have historically been used to maximize transaction throughput. However, ***recent research***
 > http://www.bailis.org/papers/acidrain-sigmod2017.pdf
+
 has demonstrated that the use of weak isolation levels results in substantial vulnerability to concurrency-based attacks.
 
 
