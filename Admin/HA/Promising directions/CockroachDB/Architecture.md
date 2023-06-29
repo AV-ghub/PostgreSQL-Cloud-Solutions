@@ -40,12 +40,22 @@ For example, when a query is distributed, the ***physical planning phase splits 
 ### Query execution
 Components of the physical plan are sent to one or more nodes for execution. ***On each node, CockroachDB spawns a logical processor to compute a part of the query***. Logical processors inside or across nodes communicate with each other over a logical flow of data. The ***combined results*** of the query are ***sent back to the first node*** where the query was received, to be sent further to the SQL client.
 
+### Vectorized query execution
+If vectorized execution is enabled, the physical plan is sent to nodes to be processed by the vectorized execution engine.
+> https://www.cockroachlabs.com/docs/v23.1/vectorized-execution
+#### hash and merge joins
+40x faster hash joiner with vectorized execution
+> https://www.cockroachlabs.com/blog/vectorized-hash-joiner/
 
+### Schema changes
+CockroachDB performs schema changes, such as the addition of columns or secondary indexes, using a protocol that ***allows tables to remain online*** (i.e., able to serve reads and writes) during the schema change.
 
+## Transaction Layer
+> https://www.cockroachlabs.com/docs/v23.1/architecture/transaction-layer
 
-
-
-
+CockroachDB ***executes all transactions at*** the strongest ANSI transaction isolation level: ***SERIALIZABLE***. All other ANSI transaction isolation levels (e.g., SNAPSHOT, READ UNCOMMITTED, READ COMMITTED, and REPEATABLE READ) are automatically upgraded to SERIALIZABLE. Weaker isolation levels have historically been used to maximize transaction throughput. However, recent research
+> http://www.bailis.org/papers/acidrain-sigmod2017.pdf
+has demonstrated that the use of weak isolation levels results in substantial vulnerability to concurrency-based attacks.
 
 
 
