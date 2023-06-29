@@ -58,8 +58,14 @@ CockroachDB ***executes all transactions at*** the strongest ANSI transaction is
 
 has demonstrated that the use of weak isolation levels results in substantial vulnerability to concurrency-based attacks.
 
+## Distribution Layer
+### Overview
+CockroachDB stores data in a monolithic sorted map of key-value pairs. This key-space describes all of the data in your cluster, as well as its location, and is ***divided into what we call "ranges"***, contiguous chunks of the key-space, so that ***every key can always be found in a single range***.
 
+CockroachDB implements a sorted map to enable:
 
+- Simple lookups: Because we identify which nodes are responsible for certain portions of the data, queries are able to quickly locate where to find the data they want.
+- Efficient scans: By defining the order of data, it's easy to find data within a particular range during a scan.
 
 
 
