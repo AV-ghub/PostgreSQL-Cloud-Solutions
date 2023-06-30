@@ -27,10 +27,15 @@ When interacting with a reference table we ***automatically perform two-phase co
 #### Type 3: Local Tables
 When you use Citus, the coordinator node you connect to and interact with is a regular PostgreSQL database with the Citus extension installed. Thus you can create ordinary tables and choose not to shard them. This is useful for small administrative tables.
 
+Citus allows ***shards to be replicated*** for protection against data loss using PostgreSQL ***streaming replication***. 
 
+### Parallelism
+Queries reading or affecting shards spread evenly across many nodes are able to run at “real-time” speed. Note that the results of the query still need to pass back through the coordinator node, so ***the speedup is most apparent when the final results are compact***.
 
+### Query Execution
+The coordinator node has a ***connection pool*** for each session. Each query (such as SELECT * FROM foo in the diagram) is limited to opening at most citus.max_adaptive_executor_pool_size (integer) simultaneous connections for its tasks per worker. That setting is configurable at the session level, for priority management.
 
-
+When a task finishes using a connection, the session pool will hold the connection open for later.
 
 
 
