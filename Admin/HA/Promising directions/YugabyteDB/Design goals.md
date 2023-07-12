@@ -31,3 +31,21 @@ YSQL supports wide SQL functionality, such as the following:
 - Stored procedures
 - Triggers
 
+### YCQL
+YCQL is a semi-relational SQL API that is best suited for internet-scale OLTP and HTAP applications needing massive write scalability and fast queries. YCQL supports distributed transactions, strongly-consistent secondary indexes, and a native JSON column type. YCQL has its roots in the Cassandra Query Language.
+
+### Performance
+Written in C++ to ensure high performance and the ability to use large memory heaps (RAM) as an internal database cache, YugabyteDB is optimized primarily to run on SSDs and Non-Volatile Memory Express (NVMe) drives.
+
+### Cloud-native architecture
+Ability to run on any public cloud or on-premises data center. This ***includes commodity hardware on bare metal machines, virtual machines, and containers***.
+Not having hard external dependencies. For example, YugabyteDB does not rely on atomic clocks, but can use an atomic clock if available.
+
+#### Kubernetes-ready
+YugabyteDB works natively in Kubernetes and other containerized environments as a stateful application.
+
+#### Open source
+YugabyteDB is open source under the very permissive Apache 2.0 license.
+
+
+
