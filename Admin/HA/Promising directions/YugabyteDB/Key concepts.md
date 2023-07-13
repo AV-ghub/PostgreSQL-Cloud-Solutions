@@ -31,3 +31,11 @@ Examples of such operations include user-issued CREATE TABLE, ALTER TABLE, and D
 Each YB-Master _**stores system metadata**_, including information about namespaces, tables, roles, permissions, and assignments of tablets to YB-TServers. These system records are _**replicated across the YB-Masters**_ for redundancy using Raft as well. 
 
 The smart clients query the _**YB-Master**_ for the tablet _**to YB-TServer map and cache it**_. By doing so, the smart clients _**can communicate directly with the correct YB-TServer**_ to serve various queries _**without incurring additional network hops**_.
+
+Some operations are performed throughout the lifetime of the universe, _**in the background**_, without impacting foreground read and write performance.
+
+The _**YB-Master**_ leader _**does the initial placement**_ (at CREATE TABLE time) of tablets across YB-TServers to enforce any user-defined data placement constraints and _**ensure uniform load**_. 
+
+YB-Masters also ensures that each node has a symmetric number of tablet-peer leaders across eligible nodes.
+
+The YB-Master receives _**heartbeats**_ from all the YB-TServers, and tracks their liveness. It detects if any YB-TServers has failed and keeps track of the time interval for which the YB-TServer remains in a failed state. If the time duration of the failure extends beyond a threshold, it _**finds replacement YB-TServers to which**_ the tablet data of the failed YB-TServer is _**rereplicated**_. Rereplication is initiated in a throttled fashion by the YB-Master leader so as to not impact the foreground operations of the universe.
