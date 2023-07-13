@@ -1,5 +1,6 @@
 ## Universe
 > https://docs.yugabyte.com/preview/architecture/concepts/universe/
+
 A YugabyteDB universe is ***a group of nodes (virtual machines, physical machines, or containers)*** that collectively function as a resilient and scalable distributed database.
 
 ### Organization of data
