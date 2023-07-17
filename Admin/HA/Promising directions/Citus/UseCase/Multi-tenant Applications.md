@@ -86,11 +86,16 @@ To scale out your Citus cluster, first **add a new worker node** to it. To move 
 ```
 SELECT citus_rebalance_start();
 ```
+### Dealing with Big Tenants
+To improve resource allocation and make guarantees of tenant QoS it is worthwhile to **move large tenants to dedicated nodes**. Citus provides the tools to do this.
 
-
-
-
-
+First isolate the tenant’s data to a dedicated shard suitable to move. The CASCADE option also applies this change to the rest of our tables distributed by company_id.
+```
+SELECT isolate_tenant_to_new_shard(
+  'companies', 5, 'CASCADE'
+);
+```
+Next we move the data across the network to a new dedicated node.
 
 
 
