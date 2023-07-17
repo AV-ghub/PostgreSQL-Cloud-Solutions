@@ -1,5 +1,6 @@
 ## Overview
 > https://docs.citusdata.com/en/v11.3/get_started/what_is_citus.html
+
 With Citus you get distributed Postgres features like **sharding, distributed tables, reference tables, a distributed query engine, columnar storage**—and as of Citus 11.0, the **ability to query from any node**. The Citus combination of **parallelism, keeping more data in memory, and higher I/O bandwidth** can lead to significant performance improvements for multi-tenant SaaS applications, customer-facing real-time analytics dashboards, and time series workloads.
 
 Here are a few **examples of large-scale** customers
@@ -7,6 +8,9 @@ Here are a few **examples of large-scale** customers
 - Heap 700+ billion events 1.4PB of data on a 100-node Citus database cluster
 - Pex 80B rows updated/day 20-node Citus database cluster 2.4TB memory, 1280 cores, and 80TB of data …with plans to grow to 45 nodes
 - MixRank 10 PB of time series data
+
+Citus provides full SQL coverage for this workload, and **enables scaling** out your relational database **to 100K+ tenants**. 
+
 
 > https://docs.citusdata.com/en/v11.3/get_started/concepts.html
 ### Nodes
