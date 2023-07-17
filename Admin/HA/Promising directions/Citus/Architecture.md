@@ -10,7 +10,38 @@ Here are a few **examples of large-scale** customers
 - MixRank 10 PB of time series data
 
 Citus provides full SQL coverage for this workload, and **enables scaling** out your relational database **to 100K+ tenants**. 
+Citus **supports tenant isolation** to provide performance guarantees **for large tenants**, and has the concept of **reference tables to reduce data duplication across tenants**.
 
+Some **advantages of Citus** for multi-tenant applications:
+- Fast queries for all tenants
+- Sharding logic in the database, not the application
+- Hold more data than possible in single-node PostgreSQL
+- Scale out without giving up SQL
+- Maintain performance under high concurrency
+- Fast metrics analysis across customer base
+- Easily scale to handle new customer signups
+- Isolate resource usage of large and small customers
+
+#### Real-Time Analytics
+Citus supports real-time queries over large datasets. Commonly these queries occur in rapidly growing event systems or systems with time series data.
+
+**Citus’ benefits** here are its ability to parallelize query execution and scale linearly with the number of worker databases in a cluster. Some advantages of Citus for real-time applications:
+- Maintain sub-second responses as the dataset grows
+- Analyze new events and new data as it happens, in real-time
+- Parallelize SQL queries
+- Scale out without giving up SQL
+- Maintain performance under high concurrency
+- Fast responses to dashboard queries
+- Use one database, not a patchwork
+- Rich PostgreSQL data types and extensions
+
+#### When Citus is Inappropriate
+Some workloads **don’t need a powerful distributed database**, while others **require a large flow of information between worker nodes**. In the first case Citus is unnecessary, and in the second not generally performant. Here are some examples:
+
+- When you do not expect your workload to ever grow beyond **a single Postgres node**
+- Offline analytics, **without the need for real-time** ingest nor real-time queries
+- Analytics apps that **do not need to support a large number of concurrent users**
+- Queries that **return data-heavy ETL results rather than summaries**
 
 > https://docs.citusdata.com/en/v11.3/get_started/concepts.html
 ### Nodes
