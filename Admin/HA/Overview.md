@@ -36,3 +36,18 @@ Not only are these tools helpful in **balancing the load** of your databases, bu
 2. Normally, database requests are **executed in a serial manner** with a criterion of first-in first-out. Therefore the approach should be to make a single connection with pipelined requests which can be executed simultaneously rather than each at a time.
 3. Improve on security. Often a connection involves a **handshake that may take 25-35 ms** average over which an SSL is established, passwords are checked and sharing of the configuration information. All this work for each connected user will result in **extensive usage of memory**. However, with connection pooling, the number of connections is reduced hence saving on memory.
 
+### How PgBouncer Works
+When PgBouncer receives a connection, it **performs the authentication**, which depends on the method specified in the configuration file. PgBouncer **supports all the authentication mechanisms that the PostgreSQL server supports**. After this, PgBouncer **checks for a cached connection**, with the same username+database combination. If a cached connection is found, it returns the connection to the client, if not, it **creates a new connection**. 
+
+#### The PgBouncer behavior depends on the pooling mode configured:
+* **session** pooling (default)
+* **transaction** pooling
+* **statement** pooling
+
+To balance queries between several servers, on the PgBouncer side, it may be a good idea to make [**server_lifetime**](https://dba.stackexchange.com/questions/172206/what-is-the-sense-to-use-server-lifetime-with-pgbouncer) smaller and also turn [**server_round_robin**](https://postgrespro.ru/docs/postgrespro/10/pgbouncer#PGBOUNCER-SERVER-ROUND-ROBIN) on. By default, idle connections are reused by the LIFO algorithm, which may work not so well when a load-balancer is used.
+> The server_lifetime enforces returning allocated sources to operation system. One hour is conservative value - and can be shorter - 10 minutes. pgbouncer close only not active connection - so **if the connection is used by any client**: opened transaction, long active command, .. **server_lifetime cannot be applied**.
+
+> [PgBouncer **pgbouncer.ini** official documentation](https://www.pgbouncer.org/config.html).
+
+
+
