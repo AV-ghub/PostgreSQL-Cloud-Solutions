@@ -48,5 +48,6 @@ To balance queries between several servers, on the PgBouncer side, it may be a g
 > The server_lifetime enforces returning allocated sources to operation system. One hour is conservative value - and can be shorter - 10 minutes. pgbouncer close only not active connection - so **if the connection is used by any client**: opened transaction, long active command, .. **server_lifetime cannot be applied**.
 
 > [PgBouncer **pgbouncer.ini** official documentation](https://www.pgbouncer.org/config.html).
+> [PgBouncer usage](https://www.pgbouncer.org/usage.html)
 
 
