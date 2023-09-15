@@ -31,7 +31,7 @@ Not only are these tools helpful in **balancing the load** of your databases, bu
 
 ### Scaling Connections in PostgreSQL Using Connection Pooling
 
-####Reasons for Connection Pooling
+#### Reasons for Connection Pooling
 1. To avoid crashing your server. PostgreSQL servers are **limited to a number of clients** they handle at a time depending on the memory parameter. If this number is surpassed, then you will end up crashing the server. With connection pooling, clients use a set number of connections.
 2. Normally, database requests are **executed in a serial manner** with a criterion of first-in first-out. Therefore the approach should be to make a single connection with pipelined requests which can be executed simultaneously rather than each at a time.
 3. Improve on security. Often a connection involves a **handshake that may take 25-35 ms** average over which an SSL is established, passwords are checked and sharing of the configuration information. All this work for each connected user will result in **extensive usage of memory**. However, with connection pooling, the number of connections is reduced hence saving on memory.
