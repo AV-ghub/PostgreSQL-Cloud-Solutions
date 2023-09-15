@@ -50,4 +50,3 @@ To balance queries between several servers, on the PgBouncer side, it may be a g
 > [PgBouncer **pgbouncer.ini** official documentation](https://www.pgbouncer.org/config.html).
 
 
-
