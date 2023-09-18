@@ -12,4 +12,7 @@
 > 
 > [pgbadger](https://postgrespro.ru/docs/enterprise/14/app-pgbadger)
 
-
+### Tools
+> [PGTune](https://pgtune.leopard.in.ua/)
+>
+> [PostgreSQL Configurator](https://pgconfigurator.cybertec.at/)
