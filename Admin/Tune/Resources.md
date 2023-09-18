@@ -7,3 +7,9 @@
 > [Тюним память и сетевой стек в Linux: история перевода высоконагруженных серверов на свежий дистрибутив](https://habr.com/ru/companies/odnoklassniki/articles/266005/)
 
 > [О вреде неправильных оптимизаций](https://habr.com/ru/articles/471906/)
+
+> [Анализ логов PostgreSQL c помощью pgBadger](https://pgcookbook.ru/article/pgbadger.html)
+> 
+> [pgbadger](https://postgrespro.ru/docs/enterprise/14/app-pgbadger)
+
+
