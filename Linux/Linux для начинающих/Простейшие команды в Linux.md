@@ -90,7 +90,18 @@ rmdir
 rm -r dir
 ```
 
+## Cp
 
+```
+# simple copy from - to
+cp file1 ./dir2/
+
+# copy with all content
+cp -r ./dir2/ ./dir/
+
+# params
+cp --help
+```
 
 
 
