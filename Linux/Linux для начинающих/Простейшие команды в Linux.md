@@ -37,8 +37,54 @@ ls -la ..
 
 # help
 ls --help
+```
+
+## Touch
 
 ```
+# create new file
+touch file
+ls -la
+
+# change existing file time (file content will stay untoucheable)
+touch file
+ls -la
+
+# create a bunch of files
+touch file1 file2 file3
+```
+
+## Mkdir
+
+```
+cd ~
+mkdir test
+mkdir ./test/dir
+=
+mkdir test/dir
+ls -la ./test/dir
+touch ./test/dir/file
+ls -la ./test/dir
+
+# create multiple dirs
+mkdir -p test/dir1/dir2/dir3
+
+```
+
+## Autocomplete
+Multiple Tabs.
+
+##rm
+
+```
+# mask for rest of simbols
+rm file*
+
+# mask for single simbol
+rm file?
+```
+
+
 
 
 
