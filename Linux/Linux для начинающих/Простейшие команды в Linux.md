@@ -109,7 +109,23 @@ mv file ./dir2/
 mv ./dir2/ ./dir1/
 ```
 
+## Type
 
+# show type of command
+type ls
+type rm
+type cd
 
+## Echo
 
+# vars
+echo $HISTSIZE
+echo $PATH
+> Выполняется толко первое вхождение.
+> Если одна и та же команда будет расположена по двум путям, то выполняться будет только та, которая расположена по первому пути.
+
+## Which
+
+# show util path
+which ls
 
