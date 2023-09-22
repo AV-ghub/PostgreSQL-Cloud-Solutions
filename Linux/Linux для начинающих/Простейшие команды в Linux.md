@@ -74,7 +74,7 @@ mkdir -p test/dir1/dir2/dir3
 ## Autocomplete
 Multiple Tabs.
 
-##rm
+## rm
 
 ```
 # mask for rest of simbols
