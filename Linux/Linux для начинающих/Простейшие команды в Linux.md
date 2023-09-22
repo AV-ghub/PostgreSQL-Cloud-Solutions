@@ -131,3 +131,43 @@ echo $PATH
 # show util path
 which ls
 ```
+
+## Who
+
+# current server connections (list of terminals connected to currnet server)
+[admin@igonin-vl bin]$ who
+admin    :0           2023-09-22 09:39 (:0)
+admin    pts/0        2023-09-22 09:39 (:0)
+admin    pts/1        2023-09-22 09:39 (:0)
+admin    pts/2        2023-09-22 09:39 (:0)
+
+## Misc
+```
+# comp name
+cat /etc/hostname
+# hostname
+[admin@igonin-vl ~]$ hostnamectl
+   Static hostname: localhost.localdomain
+Transient hostname: igonin-vl.ad.speechpro.com
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: 149bf10b06d8fa4ab04ebc553cac67cb
+           Boot ID: 5236415625934e49976111b7a7437729
+    Virtualization: kvm
+  Operating System: CentOS Linux 7 (Core)
+       CPE OS Name: cpe:/o:centos:centos:7
+            Kernel: Linux 3.10.0-1160.95.1.el7.x86_64
+      Architecture: x86-64
+# change hostname
+sudo hostname anisimov-lws1
+```
+
+## Man
+
+# More info compare to --help
+man ls
+
+
+
+
+
