@@ -90,7 +90,7 @@ rmdir
 rm -r dir
 ```
 
-## Cp
+## Cp Mv
 
 ```
 # simple copy from - to
@@ -102,7 +102,11 @@ cp -r ./dir2/ ./dir/
 # params
 cp --help
 ```
+# move
+mv file ./dir2/
 
+# move with all content
+mv ./dir2/ ./dir1/
 
 
 
