@@ -163,6 +163,7 @@ sudo hostname anisimov-lws1
 ```
 
 ## Man
+
 ```
 # More info compare to --help
 man ls
