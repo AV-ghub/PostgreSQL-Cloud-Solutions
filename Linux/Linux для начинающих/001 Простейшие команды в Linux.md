@@ -133,14 +133,14 @@ which ls
 ```
 
 ## Who
-
+```
 # current server connections (list of terminals connected to currnet server)
 [admin@igonin-vl bin]$ who
 admin    :0           2023-09-22 09:39 (:0)
 admin    pts/0        2023-09-22 09:39 (:0)
 admin    pts/1        2023-09-22 09:39 (:0)
 admin    pts/2        2023-09-22 09:39 (:0)
-
+```
 ## Misc
 ```
 # comp name
