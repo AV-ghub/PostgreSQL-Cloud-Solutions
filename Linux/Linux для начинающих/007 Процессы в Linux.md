@@ -71,6 +71,39 @@ s+кол-во сек - интервал обновления
 
 Большой wa и маленький load average и idle близок к нулю и us+si в сумме дают почти 100% - проблема с производительностью процессора.
 
+## Список процессов
+### ps
+```
+e - все процессы в системе
+f - full info about process
+l - long
+
+ps -efl | less
+ps -efl | wc -l
+ps -efl | head -1
+
+[admin@igonin-vl share]$ ps -efl | grep 27112
+0 S admin    27112  2536  0  80   0 - 29699 do_wai 09:07 pts/1    00:00:00 /bin/bash
+0 R admin    27288 27112  0  80   0 - 38862 -      09:27 pts/1    00:00:00 ps -efl
+0 S admin    27289 27112  0  80   0 - 28208 pipe_w 09:27 pts/1    00:00:00 grep --color=auto 27112
+[admin@igonin-vl share]$ ps -efl | grep 2536
+1 S admin     2536     1  0  80   0 - 169116 poll_s сен22 ?    00:14:39 kdeinit4: konsole [kdeinit] -session 1028c1d3
+0 S admin     2555  2536  0  80   0 - 29698 do_wai сен22 pts/0 00:00:00 /bin/bash
+0 S admin    27112  2536  0  80   0 - 29699 do_wai 09:07 pts/1    00:00:00 /bin/bash
+0 S admin    27291 27112  0  80   0 - 28208 pipe_w 09:27 pts/1    00:00:00 grep --color=auto 2536
+
+[admin@igonin-vl share]$ pstree
+systemd─┬─ModemManager───2*[{ModemManager}]
+        ├─NetworkManager─┬─dhclient
+        │                └─2*[{NetworkManager}]
+        ├─3*[VBoxClient───VBoxClient───2*[{VBoxClient}]]
+        ├─VBoxClient───VBoxClient───3*[{VBoxClient}]
+        ├─VBoxService───8*[{VBoxService}]
+        ├─2*[abrt-watch-log]
+        ├─abrtd
+
+
+```
 
 
 
