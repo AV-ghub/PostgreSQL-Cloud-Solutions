@@ -101,10 +101,90 @@ systemd─┬─ModemManager───2*[{ModemManager}]
         ├─VBoxService───8*[{VBoxService}]
         ├─2*[abrt-watch-log]
         ├─abrtd
-
-
 ```
 
+## Разбор процесса
+Запуск любой команды - запуск отдельного процесса. При запуске конвейера из 5 команд получаем 5 процессов от данного пользователя (сервиса).
+
+```
+ls -l /proc/
+ls -l /proc/ | wc -l
+
+ps -efl | grep admin
+0 S admin    24175  2555  0  80   0 - 40550 poll_s сен28 pts/0 00:09:06 top
+0 S admin    27112  2536  0  80   0 - 29699 do_wai 09:07 pts/1    00:00:00 /bin/bash
+1 S admin    27227  2345  1  80   0 - 161993 poll_s 09:11 ?       00:00:19 kdeinit4: dolphin [kdeinit] --icon system-fil
+0 R admin    27315 27112  0  80   0 - 38862 -      09:35 pts/1    00:00:00 ps -efl
+0 S admin    27316 27112  0  80   0 - 28209 pipe_w 09:35 pts/1    00:00:00 grep --color=auto admin
+
+[admin@igonin-vl share]$ ls -ld /proc/27112
+dr-xr-xr-x. 9 admin admin 0 сен 29 09:07 /proc/27112
+
+```
+### Сколько всего в системе файлов, где admin является владельцем
+```
+ls -ld /proc/27112/* | wc -l
+49
+[admin@igonin-vl share]$ ls -ld /proc/27112/* | grep admin
+dr-xr-xr-x. 2 admin admin 0 сен 29 09:29 /proc/27112/attr
+-rw-r--r--. 1 admin admin 0 сен 29 09:40 /proc/27112/autogroup
+-r--------. 1 admin admin 0 сен 29 09:40 /proc/27112/auxv
+-r--r--r--. 1 admin admin 0 сен 29 09:40 /proc/27112/cgroup
+--w-------. 1 admin admin 0 сен 29 09:40 /proc/27112/clear_refs
+-r--r--r--. 1 admin admin 0 сен 29 09:07 /proc/27112/cmdline
+```
+### Сколько всего в системе процессов, где admin является владельцем
+```
+[admin@igonin-vl share]$ ls -ld /proc/* | grep admin
+dr-xr-xr-x.  9 root           admin                        0 сен 22 10:39 /proc/2154
+dr-xr-xr-x.  9 admin          admin                        0 сен 22 10:39 /proc/2167
+dr-xr-xr-x.  9 admin          admin                        0 сен 22 10:39 /proc/2176
+
+[admin@igonin-vl share]$ ls -ld /proc/* | grep admin | wc -l
+65
+```
+
+### Разбор процесса ssh
+```
+[admin@igonin-vl share]$ ps -efl | grep ssh
+4 S root      1327     1  0  80   0 - 28250 poll_s сен22 ?     00:00:00 /usr/sbin/sshd -D
+1 S admin     2287  2167  0  80   0 - 18142 poll_s сен22 ?     00:00:04 /usr/bin/ssh-agent /bin/sh -c exec -l /bin/bash -c "/usr/bin/startkde"
+0 S admin    27371 27112  0  80   0 - 28209 pipe_w 09:52 pts/1    00:00:00 grep --color=auto ssh
+
+man sshd
+# search for conf param
+/conf
+-f config_file
+             Specifies the name of the configuration file.  The default is /etc/ssh/sshd_config.  sshd refuses to start if there is no configuration file.
+
+[admin@igonin-vl share]$ ls -l c
+-rw-------. 1 root root 3907 авг  4 19:00 /etc/ssh/sshd_config
+
+sudo less /etc/ssh/sshd_config
+
+# считаем только примененные строки
+sudo grep -v ^# /etc/ssh/sshd_config
+# убираем пустые строки
+# ^ - начало строки
+# $ - конец строки
+sudo grep -v ^# /etc/ssh/sshd_config | grep -v ^$
+sudo grep -v ^# /etc/ssh/sshd_config | grep -v ^$ | less
+sudo grep -v ^# /etc/ssh/sshd_config | grep -v ^$ | wc -l
+sudo wc -l /etc/ssh/sshd_config
+
+[admin@igonin-vl share]$ sudo wc -l /etc/ssh/*
+   509 /etc/ssh/moduli
+    68 /etc/ssh/ssh_config
+   139 /etc/ssh/sshd_config
+     5 /etc/ssh/ssh_host_ecdsa_key
+     1 /etc/ssh/ssh_host_ecdsa_key.pub
+     7 /etc/ssh/ssh_host_ed25519_key
+     1 /etc/ssh/ssh_host_ed25519_key.pub
+    27 /etc/ssh/ssh_host_rsa_key
+     1 /etc/ssh/ssh_host_rsa_key.pub
+   758 итого
+
+```
 
 
 
