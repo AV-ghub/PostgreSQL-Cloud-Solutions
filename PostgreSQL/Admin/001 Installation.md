@@ -33,10 +33,56 @@ sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86
 ```
 Ставим
 ```
+# если удалось поставить репозиторий
 sudo yum -y install postgresql15 postgresql15-server postgresql15-contrib postgresql15-libs
+
+# если не удалось
+sudo yum -y install postgresql postgresql-server postgresql-contrib postgresql-libs
+
+# домашняя директория postgres
+less /etc/passwd
+postgres:x:26:26:PostgreSQL Server:/var/lib/pgsql:/bin/bash
+
+# где лежит инициализатор
+which postgresql-setup
+/bin/postgresql-setup
+
+# должен запускаться автоматом без указания пути
+echo $PATH
+/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+
+# так и есть
+postgresql-setup initdb
+Initializing database ... OK
+
+# настройка автозапуска сервиса
+systemctl enable postgresql --now
+Created symlink from /etc/systemd/system/multi-user.target.wants/postgresql.service to /usr/lib/systemd/system/postgresql.service.
+
+# задаем пароль postgres
+sudo passwd postgres
+Изменяется пароль пользователя postgres.
+
+# заходим под postgres
+su - postgres
+Пароль: 
+Последний вход в систему:Ср окт  4 11:41:14 MSK 2023на pts/1
+Последняя неудачная попытка входа в систему:Ср окт  4 12:00:20 MSK 2023на pts/4
+Число неудачных попыток со времени последнего входа: 2.
+
+# проверяем домашнюю директорию (то что смотрели выше)
+-bash-4.2$ pwd
+/var/lib/pgsql
+
+# подключаемся
+-bash-4.2$ psql
+psql (9.2.24)
+Введите "help", чтобы получить справку.                                                                                                                                                 postgres=# \c                                                                                                                                                                          
+Вы подключены к базе данных "postgres" как пользователь "postgres".                                                                                                                     postgres-# \q 
+-bash-4.2$
+
+
 ```
-
-
 
 
 
