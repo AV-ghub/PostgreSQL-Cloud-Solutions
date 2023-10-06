@@ -83,9 +83,11 @@ psql (9.2.24)
 postgres=# \c                                                                                                                                                                          
 Вы подключены к базе данных "postgres" как пользователь "postgres".
 
-postgres=# \dt *                                                                                                                                                                                             Список отношений                                                                                                                                                      Схема    |           Имя           |   Тип   | Владелец                                                                                                                              ------------+-------------------------+---------+----------                                                                                                                              pg_catalog | pg_aggregate            | таблица | postgres                                                                                                                               pg_catalog | pg_am                   | таблица | postgres  
+postgres=# \dt *                                                                                                                                                                         pg_aggregate | таблица | postgres
+pg_catalog | pg_am | таблица | postgres  
 
 # выходим
 postgres-# \q 
 -bash-4.2$
+
 ```
