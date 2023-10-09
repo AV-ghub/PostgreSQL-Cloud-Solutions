@@ -92,3 +92,22 @@ postgres-# \q
 -bash-4.2$
 
 ```
+
+## Ubuntu
+> [Установка](https://lumpics.ru/how-install-ubuntu-on-virtualbox-virtual-machine/)
+
+### Прописка прокси
+```
+sudo nano /etc/yum.conf
+proxy=http://proxyserver:port
+```
+
+
+
+
+
+
+
+
+
+
