@@ -161,7 +161,7 @@ yum install createrepo modulemd-tools -y
 > * https://wiki.postgresql.org/wiki/Apt
 > * https://wiki.postgresql.org/wiki/Apt/FAQ
 
-
+Далее [возвращаемся сюда](https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/PostgreSQL/Admin/001%20Installation.md#%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0) и смотрим общую часть.
 
 
 
