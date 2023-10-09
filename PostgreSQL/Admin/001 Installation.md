@@ -133,7 +133,33 @@ yum install createrepo modulemd-tools -y
 ```
 
 ### [Ставим](https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/Practice/OTUS/PGCS/lesson_006%20patroni.md#%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BC)
-
+Все репозитории [лежат тут](https://download.postgresql.org/pub/repos)
+В частности для Ubunta процесс выглядит [следующим образом](https://download.postgresql.org/pub/repos/apt/README)
+> PostgreSQL for Debian and Ubuntu Apt Repository
+> ===============================================
+>
+> This repository hosts PostgreSQL server and extension module packages, as well
+> as some client applications.
+>
+> To use the repository, do the following:
+> Create /etc/apt/sources.list.d/pgdg.list. The distributions are called
+> codename-pgdg. In the example, replace "jessie" with the actual distribution
+> you are using:
+>
+>   deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main
+>
+> (You may determine the codename of your distribution by running lsb_release -c.)
+>
+> Import the repository key from https://www.postgresql.org/media/keys/ACCC4CF8.asc,
+> update the package lists, and start installing packages:
+>
+>   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+>   sudo apt-get update
+>   sudo apt-get install postgresql-9.5 pgadmin3
+>
+> More information:
+> * https://wiki.postgresql.org/wiki/Apt
+> * https://wiki.postgresql.org/wiki/Apt/FAQ
 
 
 
