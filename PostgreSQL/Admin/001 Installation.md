@@ -100,7 +100,38 @@ postgres-# \q
 ```
 sudo nano /etc/yum.conf
 proxy=http://proxyserver:port
+
+export http_proxy="proxy.stc:3128"
+export https_proxy="proxy.stc:3128"
+export no_proxy="localhost,127.0.0.1"
+
+echo "keepcache=1" >> /etc/yum.conf && \
+echo "http_proxy=http://proxy.ad.speechpro.com:3128" >> /etc/yum.conf && \
+echo "https_proxy=http://proxy.ad.speechpro.com:3128" >> /etc/yum.conf && \
+echo "no_proxy=.stc,.speechpro.com,.ad.speechpro.com" >> /etc/yum.conf
 ```
+### Дополнительные репозитории
+Если требуются и доступны, то
+```
+echo -e "\
+[rpm_fusion_free] \n\
+name=rpm_fusion_free \n\
+baseurl=https://mirror.yandex.ru/fedora/rpmfusion/free/el/updates/7/x86_64/ \n\
+enabled=1 \n\
+gpgcheck=0 \n\
+" > /etc/yum.repos.d/rpm_fusion_free.repo
+
+echo -e "\
+[rpm_fusion_nonfree] \n\
+name=rpm_fusion_nonfree \n\
+baseurl=https://mirror.yandex.ru/fedora/rpmfusion/nonfree/el/updates/7/x86_64/ \n\
+enabled=1 \n\
+gpgcheck=0 \n\
+" > /etc/yum.repos.d/rpm_fusion_nonfree.repo
+
+yum install createrepo modulemd-tools -y
+```
+
 ### [Ставим](https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/Practice/OTUS/PGCS/lesson_006%20patroni.md#%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D0%BC)
 
 
