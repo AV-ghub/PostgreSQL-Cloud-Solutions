@@ -208,6 +208,47 @@ OK
 :~$ sudo apt-get update
 Сущ:1 http://ru.archive.ubuntu.com/ubuntu jammy InRelease
 
+:~$ sudo apt -y install postgresql-14
+Чтение списков пакетов… Готово
+
+:~$ pg_lsclusters
+Ver Cluster Port Status Owner    Data directory              Log file
+14  main    5432 online postgres /var/lib/postgresql/14/main /var/log/postgresql/postgresql-14-main.log
+
+:~$ pg_isready
+/var/run/postgresql:5432 - принимает подключения
+
+:~$ sudo passwd postgres
+Новый пароль: 
+НЕУДАЧНЫЙ ПАРОЛЬ: Пароль содержит имя пользователя в той или иной форме
+Повторите ввод нового пароля: 
+passwd: пароль успешно обновлён
+
+~$ sudo nano /etc/postgresql/14/main/pg_hba.conf 
+[sudo] пароль для anisimov: 
+
+local   all             all                                     trust
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            scram-sha-256
+# IPv6 local connections:
+host    all             all             ::1/128                 scram-sha-256
+# Allow replication connections from localhost, by a user with the
+# replication privilege.
+local   replication     all                                     trust
+host    replication     all             127.0.0.1/32            scram-sha-256
+host    replication     all             ::1/128                 scram-sha-256
+
+:~$ sudo nano /etc/postgresql/14/main/postgresql.conf 
+listen_addresses = '*'          # what IP address(es) to listen on;
+
+:~$ sudo systemctl stop postgresql@14-main
+:~$ sudo systemctl start postgresql@14-main
+
+:~$ psql -U postgres
+psql (14.9 (Ubuntu 14.9-1.pgdg22.04+1))
+postgres=# \l+
+postgres=# \q
+
 ```
 
 #### Проверяем
