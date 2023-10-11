@@ -198,6 +198,16 @@ sudo apt update && sudo apt upgrade -y -q && echo "deb http://apt.postgresql.org
 # current (11-10-2023) key location
 wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
 
+# если проблема с терминалом, скачиваем и ставим локально
+:~$ ls -la ~/Загрузки/ACCC4CF8.asc 
+-rw-rw-r-- 1 anisimov anisimov 4812 окт 11 08:56 /home/anisimov/Загрузки/ACCC4CF8.asc
+:~$ sudo apt-key add ~/Загрузки/ACCC4CF8.asc 
+[sudo] пароль для anisimov: 
+Warning: apt-key is deprecated. Manage keyring files in trusted.gpg.d instead (see apt-key(8)).
+OK
+:~$ sudo apt-get update
+Сущ:1 http://ru.archive.ubuntu.com/ubuntu jammy InRelease
+
 ```
 
 #### Проверяем
