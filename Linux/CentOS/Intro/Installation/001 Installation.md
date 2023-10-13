@@ -101,5 +101,8 @@ vboxguest 348160 2 vboxsf
 sudo nano /etc/yum.conf
 
 proxy=http://proxy.domain:port_number
+http_proxy=http://proxy.domain:port_number
+https_proxy=http://proxy.domain:port_number
+no_proxy=.domain,.domain1,.domain2
 ```
 
