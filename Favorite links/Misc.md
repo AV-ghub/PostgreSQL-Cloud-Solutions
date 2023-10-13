@@ -1,6 +1,6 @@
 ### Misc
 <details>
-  <summary>Content</summary>
+  <summary>Programming sites</summary>
   
 [Programming notes](https://www3.ntu.edu.sg/home/ehchua/programming/index.html)
 <details>
