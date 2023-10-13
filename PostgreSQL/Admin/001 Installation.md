@@ -31,6 +31,51 @@ echo https://download.postgresql.org/pub/repos/yum/reporpms/EL-`rpm -E %{rhel}`-
 sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-`rpm -E %{rhel}`-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-42.0-32.noarch.rpm
 ```
+<details>
+<summary>Output</summary>
+
+```
+[admin@localhost ~]$ sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-`rpm -E %{rhel}`-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+Loaded plugins: fastestmirror, langpacks
+pgdg-redhat-repo-latest.noarch.rpm                                                                                                                                                      | 8.6 kB  00:00:00     
+Examining /var/tmp/yum-root-BkM7cQ/pgdg-redhat-repo-latest.noarch.rpm: pgdg-redhat-repo-42.0-32.noarch
+Marking /var/tmp/yum-root-BkM7cQ/pgdg-redhat-repo-latest.noarch.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package pgdg-redhat-repo.noarch 0:42.0-32 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===============================================================================================================================================================================================================
+ Package                                            Arch                                     Version                                   Repository                                                         Size
+===============================================================================================================================================================================================================
+Installing:
+ pgdg-redhat-repo                                   noarch                                   42.0-32                                   /pgdg-redhat-repo-latest.noarch                                    13 k
+
+Transaction Summary
+===============================================================================================================================================================================================================
+Install  1 Package
+
+Total size: 13 k
+Installed size: 13 k
+Is this ok [y/d/N]: y
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : pgdg-redhat-repo-42.0-32.noarch                                                                                                                                                             1/1 
+  Verifying  : pgdg-redhat-repo-42.0-32.noarch                                                                                                                                                             1/1 
+
+Installed:
+  pgdg-redhat-repo.noarch 0:42.0-32                                                                                                                                                                            
+
+Complete!
+
+```
+</details>  
+
 Ставим
 ```
 # если удалось поставить репозиторий
