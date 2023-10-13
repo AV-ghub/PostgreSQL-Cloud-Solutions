@@ -18,5 +18,6 @@
   <summary>PostgreSQL started</summary>
 
   * [Getting Started with PostgreSQL](https://www3.ntu.edu.sg/home/ehchua/programming/sql/PostgreSQL_GetStarted.html)
+  * [PostgreSQL Overview](https://www.prisma.io/dataguide/postgresql)
 </details>
 </details>
