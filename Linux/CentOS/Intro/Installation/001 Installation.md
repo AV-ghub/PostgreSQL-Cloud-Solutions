@@ -96,4 +96,10 @@ vboxguest 348160 2 vboxsf
 ```
 </details>
 
+## Proxy
+```
+sudo nano /etc/yum.conf
+
+proxy=http://proxy.domain:port_number
+```
 
