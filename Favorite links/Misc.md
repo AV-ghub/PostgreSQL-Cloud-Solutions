@@ -4,7 +4,7 @@
   
 [Programming notes](https://www3.ntu.edu.sg/home/ehchua/programming/index.html)
 <details>
-  <summary>Content</summary>
+  <summary>Description</summary>
   
 * How to Install & Get Started...
 * Client-Side Programming
