@@ -36,7 +36,7 @@ cd ~
 mkdir bin
 touch ~/bin/fullscreen.sh
 chmod +x ~/bin/fullscreen.sh
-nano ~/bin/fullscreen.sh
+sudo nano ~/bin/fullscreen.sh
 ```
 </details>
 Пишем туда
