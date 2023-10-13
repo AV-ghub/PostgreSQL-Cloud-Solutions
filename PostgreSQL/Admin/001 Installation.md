@@ -24,7 +24,7 @@ sqlite.x86_64                          3.7.17-8.el7_7.1                @anaconda
 Для установки произвольной (последней) версии Posgres необходимо сначала подключить репозиторий.
 Находится он соответственно тут
 ```
-https://download.postgresql.org/pub/repos/yum/reporpms/EL-`rpm -E %{rhel}`-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+echo https://download.postgresql.org/pub/repos/yum/reporpms/EL-`rpm -E %{rhel}`-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 ```
 Загружаем ([не работает](https://postgrespro.ru/list/thread-id/2529687))
 ```
