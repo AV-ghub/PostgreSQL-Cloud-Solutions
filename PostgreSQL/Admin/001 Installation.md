@@ -76,11 +76,107 @@ Complete!
 ```
 </details>  
 
-Ставим
+Ставим следующую вещь !!!!
+> https://github.com/fdupoux/fsarchiver/issues/62#issuecomment-396885830
+
+```
+sudo yum install epel-release
+```
+
+Ставим PostgreSQL
 ```
 # если удалось поставить репозиторий
 sudo yum -y install postgresql15 postgresql15-server postgresql15-contrib postgresql15-libs
+```
 
+<details>
+ <summary>Output</summary>
+
+```
+admin@localhost ~]$ sudo yum -y install postgresql15 postgresql15-server postgresql15-contrib postgresql15-libs
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: mirror.docker.ru
+ * epel: epel.mirror.serveriai.lt
+ * extras: mirror.docker.ru
+ * updates: mirror.corbina.net
+Package postgresql15-15.4-1PGDG.rhel7.x86_64 already installed and latest version
+Package postgresql15-libs-15.4-1PGDG.rhel7.x86_64 already installed and latest version
+Resolving Dependencies
+--> Running transaction check
+---> Package postgresql15-contrib.x86_64 0:15.4-1PGDG.rhel7 will be installed
+--> Processing Dependency: libpython3.6m.so.1.0()(64bit) for package: postgresql15-contrib-15.4-1PGDG.rhel7.x86_64
+---> Package postgresql15-server.x86_64 0:15.4-1PGDG.rhel7 will be installed
+--> Running transaction check
+---> Package python3-libs.x86_64 0:3.6.8-19.el7_9 will be installed
+--> Processing Dependency: python(abi) = 3.6 for package: python3-libs-3.6.8-19.el7_9.x86_64
+--> Running transaction check
+---> Package python3.x86_64 0:3.6.8-19.el7_9 will be installed
+--> Processing Dependency: python3-setuptools for package: python3-3.6.8-19.el7_9.x86_64
+--> Processing Dependency: python3-pip for package: python3-3.6.8-19.el7_9.x86_64
+--> Running transaction check
+---> Package python3-pip.noarch 0:9.0.3-8.el7 will be installed
+---> Package python3-setuptools.noarch 0:39.2.0-10.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===============================================================================================================================================================================================================
+ Package                                                  Arch                                       Version                                                 Repository                                   Size
+===============================================================================================================================================================================================================
+Installing:
+ postgresql15-contrib                                     x86_64                                     15.4-1PGDG.rhel7                                        pgdg15                                      710 k
+ postgresql15-server                                      x86_64                                     15.4-1PGDG.rhel7                                        pgdg15                                      5.7 M
+Installing for dependencies:
+ python3                                                  x86_64                                     3.6.8-19.el7_9                                          updates                                      70 k
+ python3-libs                                             x86_64                                     3.6.8-19.el7_9                                          updates                                     6.9 M
+ python3-pip                                              noarch                                     9.0.3-8.el7                                             base                                        1.6 M
+ python3-setuptools                                       noarch                                     39.2.0-10.el7                                           base                                        629 k
+
+Transaction Summary
+===============================================================================================================================================================================================================
+Install  2 Packages (+4 Dependent packages)
+
+Total download size: 16 M
+Installed size: 73 M
+Downloading packages:
+(1/6): python3-3.6.8-19.el7_9.x86_64.rpm                                                                                                                                                |  70 kB  00:00:00     
+(2/6): python3-pip-9.0.3-8.el7.noarch.rpm                                                                                                                                               | 1.6 MB  00:00:00     
+(3/6): postgresql15-contrib-15.4-1PGDG.rhel7.x86_64.rpm                                                                                                                                 | 710 kB  00:00:01     
+(4/6): python3-libs-3.6.8-19.el7_9.x86_64.rpm                                                                                                                                           | 6.9 MB  00:00:01     
+(5/6): postgresql15-server-15.4-1PGDG.rhel7.x86_64.rpm                                                                                                                                  | 5.7 MB  00:00:01     
+(6/6): python3-setuptools-39.2.0-10.el7.noarch.rpm                                                                                                                                      | 629 kB  00:00:02     
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                          6.2 MB/s |  16 MB  00:00:02     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : python3-setuptools-39.2.0-10.el7.noarch                                                                                                                                                     1/6 
+  Installing : python3-pip-9.0.3-8.el7.noarch                                                                                                                                                              2/6 
+  Installing : python3-libs-3.6.8-19.el7_9.x86_64                                                                                                                                                          3/6 
+  Installing : python3-3.6.8-19.el7_9.x86_64                                                                                                                                                               4/6 
+  Installing : postgresql15-server-15.4-1PGDG.rhel7.x86_64                                                                                                                                                 5/6 
+  Installing : postgresql15-contrib-15.4-1PGDG.rhel7.x86_64                                                                                                                                                6/6 
+  Verifying  : python3-3.6.8-19.el7_9.x86_64                                                                                                                                                               1/6 
+  Verifying  : postgresql15-server-15.4-1PGDG.rhel7.x86_64                                                                                                                                                 2/6 
+  Verifying  : postgresql15-contrib-15.4-1PGDG.rhel7.x86_64                                                                                                                                                3/6 
+  Verifying  : python3-setuptools-39.2.0-10.el7.noarch                                                                                                                                                     4/6 
+  Verifying  : python3-pip-9.0.3-8.el7.noarch                                                                                                                                                              5/6 
+  Verifying  : python3-libs-3.6.8-19.el7_9.x86_64                                                                                                                                                          6/6 
+
+Installed:
+  postgresql15-contrib.x86_64 0:15.4-1PGDG.rhel7                                                         postgresql15-server.x86_64 0:15.4-1PGDG.rhel7                                                        
+
+Dependency Installed:
+  python3.x86_64 0:3.6.8-19.el7_9                python3-libs.x86_64 0:3.6.8-19.el7_9                python3-pip.noarch 0:9.0.3-8.el7                python3-setuptools.noarch 0:39.2.0-10.el7               
+
+Complete!
+
+```
+</details>
+
+```
 # если не удалось
 sudo yum -y install postgresql postgresql-server postgresql-contrib postgresql-libs
 
@@ -92,6 +188,9 @@ postgres:x:26:26:PostgreSQL Server:/var/lib/pgsql:/bin/bash
 which postgresql-setup
 /bin/postgresql-setup
 
+[admin@localhost bin]$ which postgresql-15-setup
+/usr/bin/postgresql-15-setup
+
 # должен запускаться автоматом без указания пути
 echo $PATH
 /usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin
@@ -100,9 +199,30 @@ echo $PATH
 postgresql-setup initdb
 Initializing database ... OK
 
+[admin@localhost bin]$ postgresql-15-setup initdb
+Initializing database ... mkdir: cannot create directory ‘/var/lib/pgsql’: Permission denied
+failed, see /var/lib/pgsql/15/initdb.log
+
+[admin@localhost bin]$ sudo su postgres
+bash-4.2$ postgresql-15-setup initdb
+Initializing database ... bash-4.2$
+
+# нельзя это делать из-под root или postgres !!!!!!!!!
+# правильно
+[admin@localhost bin]$ sudo postgresql-15-setup initdb
+
 # настройка автозапуска сервиса
 systemctl enable postgresql --now
 Created symlink from /etc/systemd/system/multi-user.target.wants/postgresql.service to /usr/lib/systemd/system/postgresql.service.
+
+# нельзя это делать из-под root или postgres !!!!!!!!!
+bash-4.2$ systemctl enable postgresql-15 --now
+Created symlink from /etc/systemd/system/multi-user.target.wants/postgresql-15.service to /usr/lib/systemd/system/postgresql-15.service.
+Job for postgresql-15.service failed because the control process exited with error code. See "systemctl status postgresql-15.service" and "journalctl -xe" for details.
+bash-4.2$
+
+# правильно
+[admin@localhost bin]$ sudo systemctl enable postgresql-15 --now
 
 # задаем пароль postgres
 sudo passwd postgres
