@@ -1,14 +1,13 @@
 ### Misc
 <details>
   <summary>Programming sites</summary>
-  
-[Programming notes](https://www3.ntu.edu.sg/home/ehchua/programming/index.html)
 <details>
-  <summary>Description</summary>
+  <summary>Programming notes: https://www3.ntu.edu.sg/home/ehchua/programming/index.html</summary>
   
 * How to Install & Get Started...
 * Client-Side Programming
 * Database Programming
+* VS Code
 * [Getting Started with PostgreSQL](https://www3.ntu.edu.sg/home/ehchua/programming/sql/PostgreSQL_GetStarted.html)
 * etc
 </details>
