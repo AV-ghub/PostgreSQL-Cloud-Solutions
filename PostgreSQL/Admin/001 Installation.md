@@ -26,7 +26,7 @@ sqlite.x86_64                          3.7.17-8.el7_7.1                @anaconda
 ```
 echo https://download.postgresql.org/pub/repos/yum/reporpms/EL-`rpm -E %{rhel}`-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 ```
-Загружаем ([не работает](https://postgrespro.ru/list/thread-id/2529687))
+Загружаем
 ```
 sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-`rpm -E %{rhel}`-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 sudo yum install https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-42.0-32.noarch.rpm
