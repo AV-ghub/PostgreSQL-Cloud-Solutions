@@ -296,17 +296,15 @@ VERSION = PostgreSQL 14.9 (Ubuntu 14.9-1.pgdg22.04+1)
 
 ### Прописка прокси
 ```
-sudo nano /etc/yum.conf
-proxy=http://proxyserver:port
+sudo nano /etc/apt/apt.conf.d/00aptitude
+# добавить строки:
+Acquire::http::proxy "http://proxy.qqq:9999/";
+Acquire::https::proxy "http://proxy.qqq:9999/";
 
-export http_proxy="proxy.stc:3128"
-export https_proxy="proxy.stc:3128"
-export no_proxy="localhost,127.0.0.1"
-
-echo "keepcache=1" >> /etc/yum.conf && \
-echo "http_proxy=http://proxy.ad.speechpro.com:3128" >> /etc/yum.conf && \
-echo "https_proxy=http://proxy.ad.speechpro.com:3128" >> /etc/yum.conf && \
-echo "no_proxy=.stc,.speechpro.com,.ad.speechpro.com" >> /etc/yum.conf
+sudo nano /etc/wgetrc
+# добавить строки
+https_proxy = http://proxy.qqq:9999/
+http_proxy = http://proxy.qqq:9999/
 ```
 ### Дополнительные репозитории
 Если требуются и доступны, то
