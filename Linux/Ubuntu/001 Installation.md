@@ -20,7 +20,7 @@ sudo nano /etc/hosts
 
 # via hostnamectl
 hostnamectl set-hostname viveks-laptop
-
+sudo nano /etc/hosts
 
 ```
 </details>
