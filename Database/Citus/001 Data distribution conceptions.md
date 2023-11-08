@@ -40,7 +40,7 @@
   Упоминается про hash для рандомного распределения данных.
   Но вместе с тем указывается на то, что основные запросы запрашивают данные по диапазонам, что скорее всего повлечет за собой накладные расходы на транспортировку данных с узлов.
   Здесь рекоментуется использовать связку tenant_id с партиционированием Postgres.
-  И практическая рекомендация про построение приложения тут <a href="https://docs.citusdata.com/en/stable/use_cases/timeseries.html#timeseries">Timeseries Data</a>
+  И практическая рекомендация про построение приложения тут <a href="https://docs.citusdata.com/en/stable/use_cases/timeseries.html#timeseries">Timeseries Data</a>
   <div class="tab">
     <p>
       Старая идея про соспоставление натурального ключа с ключом секционирования <a href="https://stackoverflow.com/questions/401480/converting-guid-to-integer-and-back">Converting GUID to Integer and Back</a>
