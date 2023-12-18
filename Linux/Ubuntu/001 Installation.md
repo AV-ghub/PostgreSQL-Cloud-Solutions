@@ -48,3 +48,9 @@ For info, please visit https://www.isc.org/software/dhcp/
 :~$ ip addr
 ```
 </details>
+
+> [Прописка прокси]([https://www.baeldung.com/linux/renew-dhcp-ip-address-ubuntu](https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/PostgreSQL/Admin/001%20Installation.md#ubuntu)https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/PostgreSQL/Admin/001%20Installation.md#ubuntu)
+
+
+
+
