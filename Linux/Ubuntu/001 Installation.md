@@ -49,8 +49,16 @@ For info, please visit https://www.isc.org/software/dhcp/
 ```
 </details>
 
-> [Прописка прокси]([https://www.baeldung.com/linux/renew-dhcp-ip-address-ubuntu](https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/PostgreSQL/Admin/001%20Installation.md#ubuntu)https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/PostgreSQL/Admin/001%20Installation.md#ubuntu)
+> [Прописка прокси](https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/PostgreSQL/Admin/001%20Installation.md#ubuntu)
 
+> [Guest tools installation](https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/Linux/CentOS/Intro/Installation/001%20Installation.md#guest-tools-installation)
 
+> [Интернет. Прозрачный прокси-сервер](https://confluence.speechpro.com/pages/viewpage.action?pageId=165486262)
 
+<details>
+<summary>transparent proxy</summary>
+  
+```
 
+```
+</details>
