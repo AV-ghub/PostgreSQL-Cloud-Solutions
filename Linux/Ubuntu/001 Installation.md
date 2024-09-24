@@ -2,7 +2,8 @@
 > [Ubuntu Linux Change Hostname (computer name)](https://www.cyberciti.biz/faq/ubuntu-change-hostname-command/)
 
 <details>
-<summary>Change Hostname</summary>
+
+  <summary><h4>Change Hostname</h4></summary>
   
 ```
 :~$ hostname
@@ -29,7 +30,8 @@ sudo nano /etc/hosts
 > [How to Renew DHCP IP Address in Ubuntu](https://www.baeldung.com/linux/renew-dhcp-ip-address-ubuntu)
 
 <details>
-<summary>Renew DHCP IP Address</summary>
+
+<summary><h4>Renew DHCP IP Address</h4></summary>
   
 ```
 :~$ ps fax | grep dhclient
@@ -56,7 +58,8 @@ For info, please visit https://www.isc.org/software/dhcp/
 > [Интернет. Прозрачный прокси-сервер](https://confluence.speechpro.com/pages/viewpage.action?pageId=165486262)
 
 <details>
-<summary>transparent proxy</summary>
+  
+<summary><h4>transparent proxy</h4></summary>
   
 ```
 
