@@ -96,6 +96,8 @@ vboxguest 348160 2 vboxsf
 ```
 </details>
 
+## [Change Hostname](https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/Linux/Ubuntu/001%20Installation.md#change-hostname)
+
 ## Proxy
 ```
 sudo nano /etc/yum.conf
