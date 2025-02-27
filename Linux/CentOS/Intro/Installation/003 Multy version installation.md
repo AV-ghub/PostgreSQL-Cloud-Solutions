@@ -65,6 +65,11 @@ sudo passwd postgres
 postgres=# alter user postgres with password 'postgres';
 ```
 
+> NOTE: kill chuchundra!
+```
+sudo systemctl disable firewalld
+```
+
 ### enable only which is demanded (from admin)
 ```
 sudo systemctl enable postgresql-13 --now
