@@ -46,7 +46,7 @@ sudo nano pg_hba.conf (from admin)
 # "local" is for Unix domain socket connections only
 local   all             all                                     trust
 # IPv4 local connections:
-host    all             all             0.0.0.0/0            	  scram-sha-256
+host    all             all             0.0.0.0/0              scram-sha-256
 # IPv6 local connections:
 host    all             all             ::1/128                 scram-sha-256
 # Allow replication connections from localhost, by a user with the
