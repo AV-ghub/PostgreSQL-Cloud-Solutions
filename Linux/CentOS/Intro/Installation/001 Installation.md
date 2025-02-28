@@ -1,7 +1,7 @@
-## Install
+### Install
 > https://lumpics.ru/installing-centos-on-virtualbox/
 
-## Screen resolution
+### Screen resolution
 > https://www.youtube.com/watch?v=TqD-VPhdjLY
 >
 > https://inforkomp.com.ua/poleznoe/izmenenie-razresheniya-ekrana-v-centos-ubuntu.html
@@ -51,7 +51,7 @@ xrandr --output Virtual1 --mode "1680x1050"
 Перезагружаемся.
 </details>
 
-## Guest tools installation
+### Guest tools installation
 > https://routerus.com/how-to-install-virtualbox-guest-additions-on-centos-8/
 <details>
    <summary>Настройка</summary>
@@ -96,9 +96,11 @@ vboxguest 348160 2 vboxsf
 ```
 </details>
 
-## [Change Hostname](https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/Linux/Ubuntu/001%20Installation.md#change-hostname)
+### [Change Hostname](https://github.com/AV-ghub/PostgreSQL-Cloud-Solutions/blob/main/Linux/Ubuntu/001%20Installation.md#change-hostname)
 
-## Proxy
+<details>
+<summary><H3>Proxy</H3></summary>
+
 ```
 sudo nano /etc/yum.conf
 
@@ -107,4 +109,4 @@ http_proxy=http://proxy.domain:port_number
 https_proxy=http://proxy.domain:port_number
 no_proxy=.domain,.domain1,.domain2
 ```
-
+</details>
