@@ -112,3 +112,28 @@ https_proxy=http://proxy.domain:port_number
 no_proxy=.domain,.domain1,.domain2
 ```
 </details>
+
+<details>
+<summary><H3>SSH</H3></summary>
+<href>https://www.cyberciti.biz/faq/how-to-install-ssh-on-ubuntu-linux-using-apt-get/</href>
+   
+```
+install openssh-client
+sudo systemctl enable ssh
+
+sudo ufw allow ssh
+
+sudo systemctl start ssh
+sudo systemctl stop ssh
+sudo systemctl restart ssh
+
+sudo systemctl status ssh
+
+ssh user@server-ip-here
+```
+</details>
+
+
+
+
+
