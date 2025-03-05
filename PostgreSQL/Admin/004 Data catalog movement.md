@@ -5,8 +5,8 @@
 ```
 $ systemctl stop postgresql-13 --now
 $ systemctl status postgresql*
-$ sudo mv /var/lib/pgsql/13/data /var/lib/pgsql/13/data_bak
 $ sudo cp -a /var/lib/pgsql/13/data /home/data/pgsql/13/data
+$ sudo mv /var/lib/pgsql/13/data /var/lib/pgsql/13/data_bak
 
 cd /lib/systemd/system
 sudo nano postgresql-13.service
