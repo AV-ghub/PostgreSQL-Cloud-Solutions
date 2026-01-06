@@ -291,3 +291,135 @@ EOF
 3. Как сохранить результаты запроса в файл?
 4. Как настроить автодополнение таблиц?
 5. Как просмотреть и отфильтровать историю команд?
+
+## ❓ **Ответы на вопросы по psql:**
+
+### **1. Как выполнить SQL скрипт из файла и замерить время выполнения?**
+```bash
+# Способ 1: С использованием timing в psql
+psql -c "\timing on" -f script.sql
+
+# Способ 2: Через метакоманду внутри psql
+\i script.sql  # если уже включен \timing
+
+# Способ 3: С внешним замером времени
+time psql -f script.sql
+
+# Способ 4: С логгированием времени каждого запроса
+psql << EOF
+\timing on
+\set ECHO queries
+\i script.sql
+EOF
+```
+
+**Внутри .psqlrc можно добавить:**
+```sql
+\timing on  # автоматически замерять время всех запросов
+```
+
+### **2. В чем разница между \copy и COPY?**
+| Аспект | `\copy` (метакоманда psql) | `COPY` (SQL команда) |
+|--------|----------------------------|----------------------|
+| **Где выполняется** | На клиенте (psql) | На сервере (PostgreSQL) |
+| **Права доступа** | Права пользователя psql | Требует права суперпользователя или `pg_read_server_files`/`pg_write_server_files` |
+| **Файловая система** | Клиентская | Серверная |
+| **Производительность** | Медленнее (данные через соединение) | Быстрее (прямой доступ) |
+| **Формат** | Только текстовый/CSV | Текстовый, CSV, двоичный |
+| **Пример** | `\copy table TO 'file.csv'` | `COPY table TO '/tmp/file.csv'` |
+
+```sql
+-- Права для COPY (PostgreSQL 14+)
+GRANT pg_read_server_files TO username;  -- для чтения
+GRANT pg_write_server_files TO username; -- для записи
+```
+
+### **3. Как сохранить результаты запроса в файл?**
+```bash
+# Способ 1: При запуске psql
+psql -c "SELECT * FROM table" -o output.txt
+
+# Способ 2: Внутри psql
+\o output.txt
+SELECT * FROM table;
+\o  # вернуть вывод в консоль
+
+# Способ 3: Перенаправление shell
+psql -c "SELECT * FROM table" > output.txt
+
+# Способ 4: В CSV
+\copy (SELECT * FROM table) TO 'output.csv' WITH CSV HEADER
+
+# Способ 5: С форматированием
+\a  # выключить выравнивание
+\t  # выключить заголовки
+\o data.txt
+SELECT id || ',' || name FROM users;
+\o
+\a\t  # вернуть настройки
+```
+
+### **4. Как настроить автодополнение таблиц?**
+```sql
+-- 1. Включить автодополнение (по умолчанию включено)
+\set COMP_KEYWORD_CASE preserve-lower
+
+-- 2. Настройка в .psqlrc:
+\setenv PSQL_HISTORY ~/.psql_history
+\set HISTSIZE 1000
+\set HISTCONTROL ignoredups
+
+-- 3. Использование:
+-- Наберите начало имени таблицы и нажмите Tab дважды
+SELECT * FROM us<Tab><Tab>
+-- Покажет: users, user_sessions, user_logs, etc.
+
+-- 4. Дополнительные настройки:
+\set AUTOCOMMIT off  # для транзакций
+\set VERBOSITY verbose  # подробные сообщения
+```
+
+**Расширенное автодополнение:**
+```bash
+# Установка улучшенного автодополнения (опционально)
+# pgcli - более продвинутый клиент с автодополнением
+pip install pgcli
+pgcli -U postgres -d database
+```
+
+### **5. Как просмотреть и отфильтровать историю команд?**
+```bash
+# 1. Просмотр всей истории
+\s
+
+# 2. Поиск по истории
+\s SELECT  # покажет все команды SELECT
+
+# 3. Сохранение истории в файл
+\s /tmp/history.txt
+
+# 4. Очистка истории (текущей сессии)
+\s -  # очистить буфер истории
+
+# 5. Вне psql - работа с файлом истории
+grep "SELECT" ~/.psql_history | tail -20
+grep -i "index" ~/.psql_history | sort | uniq
+
+# 6. Поиск в истории во время работы (интерактивно)
+Ctrl + R  # reverse search, затем введите часть команды
+
+# 7. Настройка размера истории
+\set HISTSIZE 2000  # сохранять последние 2000 команд
+\set HISTFILE ~/.psql_history_`date +%Y%m%d`  # ежедневная ротация
+```
+
+**Полезные алиасы для истории:**
+```sql
+-- Добавить в .psqlrc
+\set history_search '\\s :1'
+
+-- Использование:
+:history_search CREATE TABLE
+```
+
+---
