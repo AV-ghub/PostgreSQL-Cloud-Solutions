@@ -1,4 +1,4 @@
-## 🔄 **Теперь переходим к MVCC, VACUUM и Autovacuum**
+## 🔄 **MVCC, VACUUM и Autovacuum**
 
 ### **1. Основы MVCC (Multi-Version Concurrency Control)**
 
