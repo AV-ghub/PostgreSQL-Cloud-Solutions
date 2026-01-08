@@ -159,7 +159,7 @@ SELECT * FROM pg_stat_progress_vacuum;
 
 ### **4. Autovacuum - автоматическая очистка**
 
-#### **Ключевые параметры из книги:**
+#### **Ключевые параметры:**
 ```sql
 -- Основные настройки autovacuum
 SELECT 
@@ -209,7 +209,6 @@ ALTER TABLE active_table SET (
 
 ### **5. Мониторинг Autovacuum**
 
-#### **Из книги:**
 ```sql
 -- Текущие autovacuum процессы
 SELECT 
